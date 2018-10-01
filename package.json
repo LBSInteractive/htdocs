@@ -1,0 +1,40 @@
+{
+  "name": "generador_web",
+  "version": "1.0.0",
+  "description": "Generador de super paginas web, Server (Apache Server) , Back (PHP), Front (HTML5,CSS3,AngularJS,JS,JQuery,Ajax), DB (MySql, Oracle)",
+  "main": "index.php",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.3.1",
+    "angular": "^1.7.2",
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.6.0"
+  },
+  "scripts": {
+    "test": "echo 'Modo Test..'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SienaLatam/htdocs.git"
+  },
+  "keywords": [
+    "HTML5",
+    "CSS3",
+    "AngularJS",
+    "PHP",
+    "Apache",
+    "MySQL",
+    "Oracle",
+    "Bootstrap",
+    "JQuery",
+    "JS"
+  ],
+  "author": "LBSinteractive",
+  "license": "(MIT)",
+  "bugs": {
+    "url": "https://github.com/SienaLatam/htdocs/issues"
+  },
+  "homepage": "https://github.com/SienaLatam/htdocs#readme"
+}

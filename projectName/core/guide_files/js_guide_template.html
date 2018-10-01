@@ -1,0 +1,41 @@
+<!--Java Script-->
+
+<script type="text/javascript">
+	
+
+
+/*var para crear variable y document.getElementById('id') para obtener el elmento de un html, por tag ID */
+ var nombreVariable = document.getElementById('nameId');
+
+
+
+
+/*document.getElementsByClassName("close")[0]  para obtener elemento por clase */
+ var nombreVar = document.getElementsByClassName("close")[0];
+
+
+
+
+/*con la variable btn de un ID tipo tag button, al poner la vairable btn.onclick apuntamos al action de onclick del boton*/
+/*se crear un funcion al oprimir*/
+var btn = document.getElementById('miBoton');
+var modal = document.getElementById('miModal');
+btn.onclick = function() {
+				/*con la variable modal podemos cambiar su caracteristicas de estilo*/
+                modal.style.display = "block";
+}
+
+
+
+/*Cerrar por medio de evento Click, donde se envia un evento, y se evalua que tiqueta lleva con .target y se verifica que 
+sea el desado ejecutado, luego accedemos al elemento y cambiamos la caracteristica*/
+window.onclick = function(event) {
+         if (event.target == modal) {
+               modal.style.display = "none";
+         }
+}
+
+
+
+
+</script>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- Remplazo de nameApp por nombre de App-->
+<html lang="es" ng-app="{nameApp}">
+<head>
+<!-- Page Title -->
+    <title>{pageTitle}</title>
+
+<!-- Carga de Links y Metas Generales -->
+    <meta charset="utf-8">
+    <script src="../../../../site_media/js/general/general_Meta.js"></script>
+
+<!-- Carga de Angular -->
+    <script src="../../../../../node_modules/angular/angular.min.js"></script>
+
+<!-- Carga de Angular -->
+    <script src="../../../../../node_modules/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap CSS
+        <link src="../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    -->
+    <!-- Font Awesome CSS
+         <link src="../../../../../node_modules/@fortawesome/fontawesome-free/css/all.css"/>
+    -->
+
+<!--Favicon-->
+    <!-- Remplazo de faviconName por nombre de archivo favicon en carpeta img/favicon -->
+    <link rel="shortcut icon" type="image/png" href="../../../img/favicon/{faviconName}"/>
+
+<!--Personal Style-->
+    <!-- Remplazo de personalStyle por stylo en carpeta css nombre de archivo con PHP render -->
+    <link rel="stylesheet" href="../../../../site_media/css/{personalStyle}_ng/{personalStyle}.css">
+
+<!--Angular Controller-->
+    <!-- Remplazo de name por Nombre del controlador Angular -->
+     <script type="text/javascript" src="../../../js/{nameController}Controller/{nameController}.js"></script>
+    <!--END Favicon-->
+
+     <!--Bootstrap 4 - wired-ui-kit_v4.0-framework-->
+        <link rel="stylesheet" href="../../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/bootstrap.min.css">
+        <link rel="stylesheet" href="../../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/animate.min.css">
+        <!--icons wired-ui-kit_v4.0-framework-->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--vendors wired-ui-kit_v4.0-framework-->
+        <link rel="stylesheet" href="../../../../frameworks/wired-ui-kit_v4.0-framework/js/vendors/daterangepicker/daterangepicker.css" />
+        <!--custom css wired-ui-kit_v4.0-framework-->
+        <link rel="stylesheet" href="../../../../frameworks/wired-ui-kit_v4.0-framework/css/components.css" />
+        <link rel="stylesheet" href="../../../../frameworks/wired-ui-kit_v4.0-framework/css/colors.css" />
+        <link rel="stylesheet" href="../../../../frameworks/wired-ui-kit_v4.0-framework/css/demo.css" />
+     <!--END Bootstrap 4 - wired-ui-kit_v4.0-framework-->
+
+</head>
+<body>
+    <!--Zona para modelar LOOK-->
+            <section class="colored-section hero-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="brand">
+                                <h1 class="text-white">HTML con Angular Listo!</h1>
+                                <center>
+                                      <div ng-controller="{nameApp}_Controller">
+                                        <input type="text" class="form-control" ng-model="Name"  placeholder="Angular Name">
+                                        <button class="btn btn-success">Todo listo {{Name}}</button>
+                                      </div>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    <!--Fin LOOK-->
+
+       <!-- Bootstrap CSS
+            <script src="../../../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+       -->
+
+       <!--Script Framework wired-ui-kit_v4.0-framework-->
+                <script src="../../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/query-3.1.1.min.js"></script>
+                <script src="../../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/tether.min.js"></script>
+                <script src="../../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/bootstrap.min.js"></script>
+                <script src="../../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/jquery.easing.min.js"></script>
+                <script src="../../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/wow.js"></script>
+                <!--vendors-->
+                <script src="../../../../frameworks/wired-ui-kit_v4.0-framework/js/vendors/moment.min.js"></script>
+                <script src="../../../../frameworks/wired-ui-kit_v4.0-framework/js/vendors/daterangepicker/daterangepicker.js"></script>
+                <!--custom js-->
+                <script src="../../../../frameworks/wired-ui-kit_v4.0-framework/js/app.js"></script>
+        <!--END Script Framework wired-ui-kit_v4.0-framework-->
+</body>
+</html>

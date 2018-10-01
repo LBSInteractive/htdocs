@@ -1,0 +1,103 @@
+/*Para clases*/
+.class{
+
+}
+
+
+
+/*Para apuntar a la etiqueta y luego a la clase especifica*/
+tag.class{
+
+}
+
+
+
+/*Diseño acorde del tamaño del dispositivo en este caso es de 700px o menos para que aplique 
+lo que esta dentro del @media*/
+@media only screen and (max-width: 700px) {
+
+/*Esto se aplicara desde que se cumpla el tamaño especificado en @media */
+.class{
+}
+
+}
+
+
+
+/*Para apuntar a un ID */
+#id{
+
+}
+
+
+
+/*Atributos
+
+Ocultar de pantalla
+ display: none; 
+
+Fijar posicion
+ position: fixed;
+
+Sobreponer
+ z-index: 1;
+
+Ajustar ubicación en area
+ padding-top: 100px; 
+
+Ancho 
+ width: 100%;
+
+Alto
+ height: 100%;
+
+Scroll de pagina
+ overflow: auto;
+
+Color de fondo
+ background-color: rgba(0,0,0,0.4); 
+
+
+Padre 
+ position: relative;
+
+hijo 
+ position: absolute; 
+
+
+------------------------------------------------------- Bloque
+	imagen de fondo body 
+	background-image: url(images/background-photo.jpg);
+
+
+	Centrar imagen de fondo 
+	background-position: center center;
+
+
+	No repetir
+	background-repeat: no-repeat;
+
+
+	Ajustar a ventana
+	background-attachment: fixed;
+
+
+	Ajustar a tamaño de ventana
+	background-size: cover;
+
+	Color de carga alternativo mientras carga imagen o por error
+	background-color: #66999;
+--------------------------------------------------------------
+
+*/ 
+
+
+
+
+
+
+
+/*Cambio de color al tacto virtual*/
+.close:hover{
+
+}

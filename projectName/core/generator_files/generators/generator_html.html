@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<title>
+		Siena Latam - Generador
+	</title>
+    <script src="../../../site_media/js/general/general_Meta.js"></script>
+
+	  <!--Bootstrap 4- wired-ui-kit_v4.0-framework -->
+        <link rel="stylesheet" href="../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/bootstrap.min.css">
+        <link rel="stylesheet" href="../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/animate.min.css">
+        <!--icons-->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--vendors-->
+        <link rel="stylesheet" href="../../../frameworks/wired-ui-kit_v4.0-framework/js/vendors/daterangepicker/daterangepicker.css" />
+        <!--custom css-->
+        <link rel="stylesheet" href="../../../frameworks/wired-ui-kit_v4.0-framework/css/components.css" />
+        <link rel="stylesheet" href="../../../frameworks/wired-ui-kit_v4.0-framework/css/colors.css" />
+        <link rel="stylesheet" href="../../../frameworks/wired-ui-kit_v4.0-framework/css/demo.css" />
+      <!--END Bootstrap 4- wired-ui-kit_v4.0-framework -->
+
+      <!--Script AngularJS-->
+        <script src="../../../frameworks/angularjs_v1.7-framework/angular.js"></script>
+      <!--END AngularJS-->
+
+
+
+
+
+    <!--Usar SOLOQ Boostrap 4  -->
+    <!-- Descomentar link y JS y comentar wired-ui-kid -->
+
+       <!-- <link rel="stylesheet" href="../../../frameworks/bootstrap_v4.0-framework/css/bootstrap.min.css"> -->
+
+    <!--END SOLOQ Boostrap 4  -->
+
+
+
+
+    <!--Favicon-->
+      <!-- Remplazo de faviconName por nombre de archivo favicon en carpeta img/favicon con PHP render -->
+       <link rel="shortcut icon" type="image/png" href="../../../site_media/img/favicon/default.png"/>
+      <!--END Favicon-->
+
+      <!--Personal Style-->
+       <style type="text/css">
+           body {
+
+                    background-image: url(../../../site_media/img/imagenes/generador.png);
+
+                    background-position: center center;
+
+                    background-repeat: no-repeat;
+
+                    background-attachment: fixed;
+
+                    background-size: cover;
+
+                    background-color: #66999;
+
+           }
+
+
+
+
+
+
+
+       </style>
+      <!--END Personal Style-->
+
+</head>
+<body>
+
+
+	<!--Line 1-->
+
+
+
+                    <br>
+                    <section class="colored-section bg-inverse">
+                        <div class="container">
+                        <div id="forms" class="mt-5">
+                        <div class="title">
+                            <h3>Generador HTML</h3>
+                            <p class="lead text-muted">Datos</p>
+                            <p class="lead text-muted">Nota: Si no selecciona AngularJS, se generara una API</p>
+                        </div>
+                        <form action="./generator.php" method="post">
+                        <div class="row">
+
+                            <div class="col-sm-3 pb-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="location-addon"><em class="ion-information-circled"></em></span>
+                                    <input type="text"  required pattern="[0-9a-z_-]*" maxlength="30" name="nombreHTML" class="form-control" placeholder="Nombre del archivo HTML" title="Sin espacios, minusculas, máximo 30 Letras">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 pb-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="location-addon"><em class="ion-document"></em></span>
+                                    <input type="text" class="form-control" maxlength="20" required name="tituloHTML" placeholder="Titulo de HTML" title="Máximo 20 letras">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 pb-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="location-addon"><em class="ion-image"></em></span>
+                                    <input type="text" class="form-control" name="faviconHTML" required pattern="([0-z]*.jpg|[0-z]*.png)" maxlength="50" placeholder="Favicon" title="Formato .jpg o .png" >
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="title mt-5">
+                            <p class="lead text-muted">Adicionales</p>
+                        </div>
+                        <div class="row">
+                          <div class="ml-3">
+                            <label class="custom-control custom-checkbox d-block">
+                                    <input type="checkbox" name="angular" class="custom-control-input">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">AngularJS</span>
+                            </label>
+                            <br>
+                            <br>
+                           </div>
+													 <div class="ml-3">
+                             <label class="custom-control custom-checkbox d-block">
+                                     <input type="checkbox" name="coreController" class="custom-control-input">
+                                     <span class="custom-control-indicator"></span>
+                                     <span class="custom-control-description">Controlador Central</span>
+                             </label>
+                             <br>
+                             <br>
+                            </div>
+                           <div class="col-md-12">
+                            <button type="submit" class="btn btn-outline-success">Success</button>
+                           </div>
+                       </div>
+
+
+
+                        </form>
+                      </div>
+                    </section>
+
+
+
+
+
+
+  <!--Line 1 END-->
+
+
+
+
+    <!--Script Framework- wired-ui-kit_v4.0-framework -->
+        <script src="../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/jquery-3.1.1.min.js"></script>
+        <script src="../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/tether.min.js"></script>
+        <script src="../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/bootstrap.min.js"></script>
+        <script src="../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/jquery.easing.min.js"></script>
+        <script src="../../../frameworks/wired-ui-kit_v4.0-framework/internal_resources/wow.js"></script>
+        <!--vendors-->
+        <script src="../../../frameworks/wired-ui-kit_v4.0-framework/js/vendors/moment.min.js"></script>
+        <script src="../../../frameworks/wired-ui-kit_v4.0-framework/js/vendors/daterangepicker/daterangepicker.js"></script>
+        <!--custom js-->
+        <script src="../../../frameworks/wired-ui-kit_v4.0-framework/js/app.js"></script>
+    <!--END Script Framework- wired-ui-kit_v4.0-framework -->
+
+
+
+    <!--Usar SOLOQ Boostrap 4  -->
+    <!-- Descomentar link y JS y comentar wired-ui-kid -->
+
+       <!-- <script src="../../../frameworks/bootstrap_v4.0-framework/js/bootstrap.min.js"></script> -->
+
+    <!--END SOLOQ Boostrap 4  -->
+
+</body>
+</html>
