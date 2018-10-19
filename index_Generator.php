@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 /****************************************************************************************************Notas/
 
@@ -64,7 +64,7 @@ Copiar y pegar el header generico debajo del comentario token router
 
 
                                /**token router**/
-header("Location: /projectName/core/generator_files/generators/generator_html.html");
+header("Location: /projectName/site_media/html/modules/generadorMC/generadorController.php");
 
 
 /****************************************************************************************************FIN Router*/

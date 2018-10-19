@@ -1,0 +1,11 @@
+/*-------------------------------- CSS -----------------------------*/
+/********************************************************************/
+body {
+  /* background-image: url(../../img/imagenes/dna.jpg); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/*-------------------------------- CSS -----------------------------*/
