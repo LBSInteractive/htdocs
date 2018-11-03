@@ -6,47 +6,49 @@
 
 /*------------------------------- Area Modulo Controller --------------------------------*/
 // angular.module se compone de ('Nombre del modulo',[dependencias]) Inyectables
-var app = angular.module("generador", ['ngMaterial']);
+var app = angular.module("simuladorCreditos", []);
 /*------------------------------- Area Modulo Controller --------------------------------*/
 
 
 /*------------------------------- Area Modulo Controller --------------------------------*/
 //.controller ('Nombre Controller', directiva en function($scope)) Inyectables
-app.controller('generador_Controller', function($scope, $timeout, $rootScope, $http) {
+app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootScope, $http) {
 
 
     /*--------------------------    Area de Declaracion     ------------------------------*/
     //*************************(  Contenido del controller )********************************
-    $scope.nombreArchivoHTML = null;
-    $scope.nombreTituloPage = null;
-    $scope.nameFavicon = null;
-    $scope.selectTypeEnd = {
-        angular: false,
-        servicio: false
-    };
+    $scope.variable = "variable";
     //**************************************************************************************
+    //*************************( Contenido del controller global)***************************
+    //Variable Global rootScope
+    $rootScope.variable = "variable global"
+    //**************************************************************************************
+    /*--------------------------    Area de Declaracion     ------------------------------*/
+
+
+
 
 
     /*--------------------------            $apis           ------------------------------*/
     //*************************(  Consulta a Base de Datos )********************************
     $scope.$api = {
-        consultaGet: function() {
-
+        /**
+         * Para hacer un request por POST
+         * @return JSON en Consola
+         */
+        consultaPost: function() {
             /**
-             * dataService Realiza la peticion GET params (Para enviar parametros por GET ?String=String )
+             * dataService Realiza la peticion POST data (Para enviar parametros por POST )
              * @type $http
              */
             var dataService = $http({
-                method: 'GET',
-                url: '../../../../core/generator_files/generators/generator.php',
-                params: {
-                    nombreArchivoHTML: $scope.nombreArchivoHTML,
-                    nombreTituloPage: $scope.nombreTituloPage,
-                    faviconName: $scope.faviconName,
-                    selectTypeEnd: $scope.selectTypeEnd.servicio == true ? 'servicio' : 'angular'
+                method: 'POST',
+                url: 'http://localhost/projectName/site_media/html/modules/servicioMC/servicioController.php',
+                data: {
+                    nombre: 'ejemplo'
                 },
                 headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
+                    'Content-Type': 'application/json'
                 }
             });
 
@@ -55,12 +57,42 @@ app.controller('generador_Controller', function($scope, $timeout, $rootScope, $h
              * @param  $http response Peticion
              * @return none
              */
-            dataService.then(function(response) {
-                var data = response.data;
-                $scope.resultGenerator = data.errorText + " " + data.statusCode;
-            }, function(response) {
-                var data = response.data;
-                $scope.resultGenerator = data.errorText + " " + data.statusCode;
+            dataService.then(function(response){
+                 console.log(response.data);
+            },function(response){
+                console.log("Error");
+            });
+
+        },
+        /**
+         * Para hacer un request por GET
+         * @return JSON en Consola
+         */
+        consultaGet: function() {
+            /**
+             * dataService Realiza la peticion GET params (Para enviar parametros por GET ?String=String )
+             * @type $http
+             */
+            var dataService = $http({
+                method: 'GET',
+                url: 'http://localhost/projectName/site_media/html/modules/servicioMC/servicioController.php',
+                params: {
+                    nombre: 'ejemplo'
+                },
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            /**
+             * Control de respuesta
+             * @param  $http response Peticion
+             * @return none
+             */
+            dataService.then(function(response){
+                 console.log(response.data);
+            },function(response){
+                console.log("Error");
             });
         }
     };
@@ -74,12 +106,8 @@ app.controller('generador_Controller', function($scope, $timeout, $rootScope, $h
     /*--------------------------            $gui            ------------------------------*/
     //*************************(  Ejecuciones de la pantalla )******************************
     $scope.$gui = {
-        validador: function() {
-            if (!$scope.nombreArchivoHTML || !$scope.nombreTituloPage || !$scope.faviconName || (!$scope.selectTypeEnd.angular && !$scope.selectTypeEnd.servicio)) {
-                return true;
-            } else {
-                return false;
-            }
+        ejemplo: function() {
+            $scope.variable = "Nuevo Valor pantalla";
         }
     };
     //**************************************************************************************
@@ -116,9 +144,22 @@ app.controller('generador_Controller', function($scope, $timeout, $rootScope, $h
 
 
 
+
     /*--------------------------            Arranque         ------------------------------*/
+    console.log("Hello World!");
+    //Ejemplo de ejecucion
+    $scope.$complexSystem.ejemplo();
+    console.log($scope.variable);
 
+    /**
+     * Request GET
+     */
+    $scope.$api.consultaGet();
 
+    /**
+     * Request POST
+     */
+    $scope.$api.consultaPost();
     /*--------------------------            Arranque         ------------------------------*/
 
 })

@@ -16,32 +16,122 @@
     <!--agregando-->
 
     <link rel="shortcut icon" type="image/png" href="../../../img/favicon/Power_Generator.png" />
-    <link rel="stylesheet" href="../../../../site_media/css/generador_ng/generador.css">
+    <link rel="stylesheet" type="text/css" href="../../../../site_media/css/generador_ng/generador.css">
+    <link rel="stylesheet" type="text/css" href="../../../../site_media/css/generador_ng/animate.css">
+    <link rel="stylesheet" type="text/css" href="../../../../site_media/css/generador_ng/hamburgers.css">
+    <link rel="stylesheet" type="text/css" href="../../../../site_media/css/generador_ng/animsition.css">
+    <link rel="stylesheet" type="text/css" href="../../../../site_media/css/generador_ng/select2.css">
+    <link rel="stylesheet" type="text/css" href="../../../../site_media/css/generador_ng/select2.css">
+    <link rel="stylesheet" type="text/css" href="../../../../site_media/css/generador_ng/util.css">
+    <link rel="stylesheet" type="text/css" href="../../../../site_media/css/generador_ng/main.css">
+    <link rel="stylesheet" type="text/css" href="../../../../site_media/css/generador_ng/font-awesome.css">
     <script type="text/javascript" src="../../../js/generadorController/generador.js"></script>
+
 
 </head>
 
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <h1 class="text-white">HTML con Angular Listo!</h1>
-                <center>
-                    <div ng-controller="generador_Controller">
-                        <input type="text" class="form-control" ng-model="Name" placeholder="Angular Name">
-                        <button class="btn btn-success">Todo listo {{Name}}</button>
+<body ng-controller="generador_Controller">
+    <div class="container-contact100">
+        <div class="wrap-contact100">
+            <form class="contact100-form" name="formHome">
+                <span class="contact100-form-title">
+                    {{resultGenerator}}
+                </span>
+
+                <div class="wrap-input100">
+                    <span class="label-input100">Nombre Archivo HTML</span>
+                    <input class="input100" type="text" ng-model="nombreArchivoHTML" name="name" placeholder="Nombre Archivo">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100">
+                    <span class="label-input100">Titulo de Página</span>
+                    <input class="input100" type="text" ng-model="nombreTituloPage" name="email" placeholder="Titulo Página">
+                    <span class="focus-input100"></span>
+                </div>
+
+                    <!-- <div>
+                        <select class="selection-2" ng-model="selectTypeEnd" name="service">
+                            <option value="">Seleccione..</option>
+                            <option value="angular">AngularJS - FrontEnd</option>
+                            <option value="servicio">ServicioApi - BackEnd</option>
+                        </select>
+                    </div> -->
+                    <div>
+                        <fieldset class="standard">
+                            <md-checkbox type="checkbox" ng-model="selectTypeEnd.angular" ng-disabled="selectTypeEnd.servicio == true" aria-label="Checkbox 1">
+                                AngularJS - FrontEnd: {{ selectTypeEnd.angular == true ? ' Seleccionado!' : '' }}
+                            </md-checkbox>
+                        </fieldset>
                     </div>
-                </center>
-            </div>
+                    <div>
+                        <fieldset class="standard">
+                            <md-checkbox type="checkbox" ng-disabled="selectTypeEnd.angular == true" ng-model="selectTypeEnd.servicio" aria-label="Checkbox 1">
+                                ServicioApi - BackEnd: {{ selectTypeEnd.servicio == true ? ' Seleccionado!' : '' }}
+                            </md-checkbox>
+                        </fieldset>
+                    </div>
+
+                <div class="wrap-input100">
+                    <span class="label-input100">Favicon</span>
+                    <input class="input100" type="text" ng-model="faviconName" name="Favicon" placeholder="Nombre de Favicon">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="container-contact100-form-btn">
+                    <div class="wrap-contact100-form-btn">
+                        <div class="contact100-form-bgbtn"></div>
+                        <button class="contact100-form-btn" ng-disabled="$gui.validador()" style="{{ $gui.validador() ? 'background-color: grey' : '' }}" ng-click="$api.consultaGet()">
+                            <span>
+                                <!-- [a-z]+([A-Z]{1}[a-z]+)*/ -->
+                                Submit
+                                <i ng-show="!$gui.validador()" class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-    <!--agregando-->
+
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--Form-->
+    <script type="text/javascript" src="../../../js/generadorController/animsition.js"></script>
+    <script type="text/javascript" src="../../../js/generadorController/select2.js"></script>
+    <script>
+        $(".selection-2").select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $('#dropDownSelect1')
+        });
+    </script>
+    <script type="text/javascript" src="../../../js/generadorController/moment.js"></script>
+    <script type="text/javascript" src="../../../js/generadorController/daterangepicker.js"></script>
+    <script type="text/javascript" src="../../../js/generadorController/countdowntime.js"></script>
+    <script type="text/javascript" src="../../../js/generadorController/main.js"></script>
+
+
     <script src="../../../../../node_modules/angular-animate/angular-animate.min.js"></script>
     <script src="../../../../../node_modules/angular-aria/angular-aria.min.js"></script>
     <script src="../../../../../node_modules/angular-messages/angular-messages.min.js"></script>
     <script src="../../../../../node_modules/angular-material/angular-material.min.js"></script>
-    <!--agregando-->
     <script src="../../../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+
 </body>
 
 </html>

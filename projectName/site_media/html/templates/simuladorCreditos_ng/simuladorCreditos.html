@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="simuladorCreditos">
+
+<head>
+
+    <!-- Cargar Favicon y Titulo -->
+    <meta charset="utf-8">
+    <title>Simulador Creditos</title>
+    <link rel="shortcut icon" type="image/png" href="../../../img/favicon/pesos.png" />
+
+    <!-- Carga Metas -->
+    <script src="../../../../site_media/js/general/general_Meta.js"></script>
+
+
+
+    <script src="../../../../../node_modules/angular/angular.min.js"></script>
+
+
+
+    <script src="../../../../../node_modules/jquery/dist/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../../node_modules/@fortawesome/fontawesome-free/css/all.css" />
+    <script src="../../../../../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="../../../../../node_modules/angular-material/angular-material.min.css">
+
+
+    <link rel="stylesheet" href="../../../../site_media/css/simuladorCreditos_ng/simuladorCreditos.css">
+    <script type="text/javascript" src="../../../js/simuladorCreditosController/simuladorCreditos.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1 class="text-white">HTML con Angular Listo!</h1>
+                <center>
+                    <div ng-controller="simuladorCreditos_Controller">
+                        <input type="text" class="form-control" ng-model="Name" placeholder="Angular Name">
+                        <button class="btn btn-success">Todo listo {{Name}}</button>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var popper = new Popper(referenceElement, onPopper, {
+            placement: 'top'
+        });
+    </script>
+
+    <script src="../../../../../node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="../../../../../node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="../../../../../node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="../../../../../node_modules/angular-material/angular-material.min.js"></script>
+    <script src="../../../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

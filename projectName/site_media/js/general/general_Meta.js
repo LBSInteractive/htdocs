@@ -4,7 +4,7 @@
  */
 var preLoadMeta_viewport = document.createElement("meta");
 preLoadMeta_viewport.name = "viewport";
-preLoadMeta_viewport.content = "width=device-width, user-scalable=no, initial-scale=1.0";
+preLoadMeta_viewport.content = "width=device-width, initial-scale=1";
 document.head.appendChild(preLoadMeta_viewport);
 
 

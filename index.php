@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Siena</title>
+        <title>Simulador</title>
         <meta name="description" content="Love profile card." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/projectName/frameworks/card/css/bootstrap.min.css">
@@ -20,18 +20,18 @@
                     <div class="card border-none col-lg-6 col-md-8 col-sm-10 mx-auto bg-texture">
                         <div class="card-body text-white text-center py-4">
                             <div class="mb-3">
-                                <img src="/projectName/frameworks/card/img/Siena_Eye_Dark.png" class="brand-logo img-fluid rounded-circle"/>
+                                <img src="/projectName/frameworks/card/img/dinner.png" class="brand-logo img-fluid rounded-circle"/>
                             </div>
-                            <h1 class="pt-4 text-white h2"> <span>Siena</span><span> Latam</span><br/></h1>
+                            <h1 class="pt-4 text-white h2"> <span>Simulador</span><span> de Creditos</span><br/></h1>
                             <p class="mt-4 lead text-white">
-                                Tu entrenador Favorito
+                                v0.1 Beta Test
                             </p>
                             <p class="mt-2">
                                 <a href="https://github.com/LBSInteractive/htdocs" target="_blank"><em class="ion-social-github text-github-alt icon-sm mr-3"></em></a>
                             </p>
                             <div class="pt-3">
-                                <a href="#" class="btn btn-white-alt text-blue btn-lg">
-                                    Cargando...
+                                <a href="http://localhost/projectName/site_media/html/modules/simuladorCreditosMC/simuladorCreditosController.php" class="btn btn-white-alt text-blue btn-lg">
+                                    Ir al Simulador..
                                 </a>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                     <div class="col-sm-12 mt-5 footer">
                         <p class="text-white small text-center">
                             &copy; 2018
-                            <a href="#">Siena</a>. Designed by <a href="#">@Sienas</a>
+                            <a href="#">LBSInteractive</a>. Designed by <a href="#">@LBSInteractive</a>
                         </p>
                     </div>
                 </div>
