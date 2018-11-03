@@ -20,31 +20,319 @@
     <script src="../../../../../node_modules/jquery/dist/jquery.min.js"></script>
 
 
-    <link rel="stylesheet" href="../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="../../../../../node_modules/@fortawesome/fontawesome-free/css/all.css" />
     <script src="../../../../../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <link rel="stylesheet" href="../../../../../node_modules/angular-material/angular-material.min.css">
 
 
     <link rel="stylesheet" href="../../../../site_media/css/simuladorCreditos_ng/simuladorCreditos.css">
+    <link rel="stylesheet" href="../../../../site_media/css/simuladorCreditos_ng/animate.min.css">
+    <link rel="stylesheet" href="../../../../site_media/css/simuladorCreditos_ng/ionicons.min.css">
+    <link rel="stylesheet" href="../../../../site_media/css/simuladorCreditos_ng/jquery.countdown.css">
+    <link rel="stylesheet" href="../../../../site_media/css/simuladorCreditos_ng/bootstrap.css">
+
+    <link rel="stylesheet" href="../../../../site_media/css/simuladorCreditos_ng/animate.min.css">
+    <link rel="stylesheet" href="../../../../site_media/css/simuladorCreditos_ng/select2.css">
+    <link rel="stylesheet" href="../../../../site_media/css/simuladorCreditos_ng/perfect-scrollbar.css">
+    <link rel="stylesheet" href="../../../../site_media/css/simuladorCreditos_ng/util.css">
+    <link rel="stylesheet" href="../../../../site_media/css/simuladorCreditos_ng/main.css">
+
     <script type="text/javascript" src="../../../js/simuladorCreditosController/simuladorCreditos.js"></script>
 
 </head>
 
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <h1 class="text-white">HTML con Angular Listo!</h1>
-                <center>
-                    <div ng-controller="simuladorCreditos_Controller">
-                        <input type="text" class="form-control" ng-model="Name" placeholder="Angular Name">
-                        <button class="btn btn-success">Todo listo {{Name}}</button>
+<body ng-controller="simuladorCreditos_Controller">
+    <!--hero section-->
+    <section class="bg-white hero p-0">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-5 bg-light text-center col-fixed" style="padding: 50px 20px 20px 20px">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="/projectName/frameworks/card/img/dinner.png" width="100px" class=" img-fluid rounded-circle" />
+                            </div>
+                            <div class="col-6">
+                                <h3>Simulador de Créditos</h3>
+                                <p class="mt-4">
+                                    Fraccionamiento
+                                </p>
+                            </div>
+
+                        </div>
                     </div>
-                </center>
+                    <br>
+                    <div class="row">
+                        <div class="col-3">
+                            <h3 style="font-size:20px">Nombre:</h3>
+                        </div>
+                        <div class="col-9">
+                            <input style="height: 20px" type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <h3 style="font-size:20px">ID:</h3>
+                        </div>
+                        <div class="col-9">
+                            <input style="height: 20px" type="text" class="form-control" placeholder="Indentificación" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <h3 style="font-size:15px">Valor Prestamo:</h3>
+                        </div>
+                        <div class="col-9">
+                            <input style="height: 20px" type="text" class="form-control" placeholder="$" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-3">
+                            <h3 style="font-size:15px">Tipo Préstamo:</h3>
+                        </div>
+                        <div class="col-4">
+                            <fieldset class="standard">
+                                <md-checkbox type="checkbox" ng-model="selectTypeEnd.cuotaFija" ng-disabled="selectTypeEnd.periodoGracia == true" aria-label="Checkbox 1">
+                                    Cuota Fija
+                                </md-checkbox>
+                            </fieldset>
+                        </div>
+                        <div class="col-4">
+                            <fieldset class="standard">
+                                <md-checkbox type="checkbox" ng-model="selectTypeEnd.periodoGracia" ng-disabled="selectTypeEnd.cuotaFija == true" aria-label="Checkbox 1">
+                                    Periodo de Gracia
+                                </md-checkbox>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <h3 style="font-size:20px">Plazo:</h3>
+                        </div>
+                        <div class="col-4">
+                            <input style="height: 20px" type="text" class="form-control" placeholder="Años" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <hr>
+                    Periodo de amortización
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">
+                            <fieldset class="standard">
+                                <md-checkbox type="checkbox" ng-model="selectTypeEnd.mensual" ng-disabled="selectTypeEnd.trimestral == true" aria-label="Checkbox 1">
+                                    Mensual
+                                </md-checkbox>
+                            </fieldset>
+                        </div>
+                        <div class="col-6">
+                            <fieldset class="standard">
+                                <md-checkbox type="checkbox" ng-model="selectTypeEnd.trimestral" ng-disabled="selectTypeEnd.mensual == true" aria-label="Checkbox 1">
+                                    Trimestral
+                                </md-checkbox>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <hr>
+                    Tasas de Interes
+                    <hr>
+                    <div class="row">
+                        <div class="col-4">
+                            <h3 style="font-size:18px">Efectiva Anual:</h3>
+                        </div>
+                        <div class="col-8">
+                            <input style="height: 20px" type="text" class="form-control" placeholder="%" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <h3 style="font-size:18px">Nominal Anual:</h3>
+                        </div>
+                        <div class="col-8">
+                            <input style="height: 20px" type="text" class="form-control" placeholder="%" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <h3 style="font-size:18px">Periodica:</h3>
+                        </div>
+                        <div class="col-8">
+                            <input style="height: 20px" type="text" class="form-control" placeholder="%" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-sm-7 offset-sm-5 px-0 py-5">
+                    <!--Why This Domain-->
+                    <section class="pt-4">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-8 mx-auto text-center">
+                                    <h2 class="text-primary pb-3">Cuadro de Amortización Cuota Fija</h2>
+                                </div>
+                            </div>
+                            <div class="row d-md-flex mt-4">
+                                <div class="limiter">
+                                    <div class="container-table100">
+                                        <div class="wrap-table100">
+                                            <div class="table100 ver1">
+                                                <div class="table100-firstcol">
+                                                    <table>
+                                                        <thead>
+                                                            <tr class="row100 head">
+                                                                <th class="cell100 column1">Employees</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="row100 body">
+                                                                <td class="cell100 column1">Brandon Green</td>
+                                                            </tr>
+
+                                                            <tr class="row100 body">
+                                                                <td class="cell100 column1">Kathy Daniels</td>
+                                                            </tr>
+
+                                                            <tr class="row100 body">
+                                                                <td class="cell100 column1">Elizabeth Alvarado</td>
+                                                            </tr>
+
+                                                            <tr class="row100 body">
+                                                                <td class="cell100 column1">Michael Coleman</td>
+                                                            </tr>
+
+                                                            <tr class="row100 body">
+                                                                <td class="cell100 column1">Jason Cox</td>
+                                                            </tr>
+
+                                                            <tr class="row100 body">
+                                                                <td class="cell100 column1">Christian Perkins</td>
+                                                            </tr>
+
+                                                            <tr class="row100 body">
+                                                                <td class="cell100 column1">Emily Wheeler</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="wrap-table100-nextcols js-pscroll">
+                                                    <div class="table100-nextcols">
+                                                        <table>
+                                                            <thead>
+                                                                <tr class="row100 head">
+                                                                    <th class="cell100 column2">Position</th>
+                                                                    <th class="cell100 column3">Start date</th>
+                                                                    <th class="cell100 column4">Last Activity</th>
+                                                                    <th class="cell100 column5">Contacts</th>
+                                                                    <th class="cell100 column6">Age</th>
+                                                                    <th class="cell100 column7">Address</th>
+                                                                    <th class="cell100 column8">Card No</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="row100 body">
+                                                                    <td class="cell100 column2">CMO</td>
+                                                                    <td class="cell100 column3">16 Nov 2012</td>
+                                                                    <td class="cell100 column4">16 Nov 2017</td>
+                                                                    <td class="cell100 column5">brandon94@example.com</td>
+                                                                    <td class="cell100 column6">30</td>
+                                                                    <td class="cell100 column7">New York City, NY</td>
+                                                                    <td class="cell100 column8">424242xxxxxx6262</td>
+                                                                </tr>
+
+                                                                <tr class="row100 body">
+                                                                    <td class="cell100 column2">Marketing</td>
+                                                                    <td class="cell100 column3">16 Nov 2015</td>
+                                                                    <td class="cell100 column4">30 Nov 2017</td>
+                                                                    <td class="cell100 column5">kathy_82@example.com</td>
+                                                                    <td class="cell100 column6">26</td>
+                                                                    <td class="cell100 column7">New York City, NY</td>
+                                                                    <td class="cell100 column8">424242xxxxxx1616</td>
+                                                                </tr>
+
+                                                                <tr class="row100 body">
+                                                                    <td class="cell100 column2">CFO</td>
+                                                                    <td class="cell100 column3">16 Nov 2013</td>
+                                                                    <td class="cell100 column4">30 Nov 2017</td>
+                                                                    <td class="cell100 column5">elizabeth82@example.com</td>
+                                                                    <td class="cell100 column6">32</td>
+                                                                    <td class="cell100 column7">New York City, NY</td>
+                                                                    <td class="cell100 column8">424242xxxxxx5326</td>
+                                                                </tr>
+
+                                                                <tr class="row100 body">
+                                                                    <td class="cell100 column2">Designer</td>
+                                                                    <td class="cell100 column3">16 Nov 2013</td>
+                                                                    <td class="cell100 column4">30 Nov 2017</td>
+                                                                    <td class="cell100 column5">michael94@example.com</td>
+                                                                    <td class="cell100 column6">22</td>
+                                                                    <td class="cell100 column7">New York City, NY</td>
+                                                                    <td class="cell100 column8">424242xxxxxx6328</td>
+                                                                </tr>
+
+                                                                <tr class="row100 body">
+                                                                    <td class="cell100 column2">Developer</td>
+                                                                    <td class="cell100 column3">16 Nov 2017</td>
+                                                                    <td class="cell100 column4">30 Nov 2017</td>
+                                                                    <td class="cell100 column5">jasoncox@example.com</td>
+                                                                    <td class="cell100 column6">25</td>
+                                                                    <td class="cell100 column7">New York City, NY</td>
+                                                                    <td class="cell100 column8">424242xxxxxx7648</td>
+                                                                </tr>
+
+                                                                <tr class="row100 body">
+                                                                    <td class="cell100 column2">Sale</td>
+                                                                    <td class="cell100 column3">16 Nov 2016</td>
+                                                                    <td class="cell100 column4">30 Nov 2017</td>
+                                                                    <td class="cell100 column5">christian_83@example.com</td>
+                                                                    <td class="cell100 column6">28</td>
+                                                                    <td class="cell100 column7">New York City, NY</td>
+                                                                    <td class="cell100 column8">424242xxxxxx4152</td>
+                                                                </tr>
+
+                                                                <tr class="row100 body">
+                                                                    <td class="cell100 column2">Support</td>
+                                                                    <td class="cell100 column3">16 Nov 2013</td>
+                                                                    <td class="cell100 column4">30 Nov 2017</td>
+                                                                    <td class="cell100 column5">emily90@example.com</td>
+                                                                    <td class="cell100 column6">24</td>
+                                                                    <td class="cell100 column7">New York City, NY</td>
+                                                                    <td class="cell100 column8">424242xxxxxx6668</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!--footer-->
+                    <section class="mt-2">
+                        <div class="container">
+                            <div class="row mr-5 ml-5">
+                                <div class="col-sm-12">
+                                    <p class="text-muted text-center">
+                                        &copy; 2018 LBSInteractive by
+                                        <a href="#">Jefersson Ramos & Brayan Murillo</a><i class="fa fa-spinner fa-spin"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
 
     <script>
         var popper = new Popper(referenceElement, onPopper, {
@@ -57,6 +345,8 @@
     <script src="../../../../../node_modules/angular-messages/angular-messages.min.js"></script>
     <script src="../../../../../node_modules/angular-material/angular-material.min.js"></script>
     <script src="../../../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../js/simuladorCreditosController/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="../../../js/simuladorCreditosController/scripts.js"></script>
 
 </body>
 

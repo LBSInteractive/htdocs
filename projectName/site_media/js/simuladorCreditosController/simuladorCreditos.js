@@ -6,7 +6,7 @@
 
 /*------------------------------- Area Modulo Controller --------------------------------*/
 // angular.module se compone de ('Nombre del modulo',[dependencias]) Inyectables
-var app = angular.module("simuladorCreditos", []);
+var app = angular.module("simuladorCreditos", ['ngMaterial']);
 /*------------------------------- Area Modulo Controller --------------------------------*/
 
 
