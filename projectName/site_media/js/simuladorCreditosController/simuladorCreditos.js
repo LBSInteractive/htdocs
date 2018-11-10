@@ -108,10 +108,20 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
     $scope.$gui = {
         ejemplo: function() {
             $scope.variable = "Nuevo Valor pantalla";
+        },
+        efectivoAnual: function(){
+
+        },
+        nominalAnual: function(){
+            
+        },
+        periodico: function(){
+
         }
     };
     //**************************************************************************************
     /*--------------------------            $gui            ------------------------------*/
+   
 
 
 
