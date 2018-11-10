@@ -110,12 +110,16 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
             $scope.variable = "Nuevo Valor pantalla";
         },
         efectivoAnual: function(){
+            //ip = ((1 + EA)^(dias/360)) -1
+
 
         },
         nominalAnual: function(){
-            
+            //ip = ((1 + ip)^(360/dias)) -1 
+
         },
         periodico: function(){
+            //EA = ((1 + ip) ^ (360/dias)) -1 
 
         }
     };
