@@ -138,26 +138,36 @@
                     <hr>
                     Tasas de Interes
                     <hr>
-                    <div class="row">
-                        <md-radio-group ng-model="factoresInteres">
-                            <div class="col-4">
-                                <fieldset class="standard">
-                                    <md-radio-button value="efecAnual">Efectivo Anual</md-radio-button>
-                                </fieldset>
-                            </div>
-                            <div class="col-4">
-                                <fieldset class="standard">
-                                        <md-radio-button nvalue="nominAnual">Nominal Anual</md-radio-button>
-                                </fieldset>
-                            </div>
-                            <div class="col-4">
-                                <fieldset class="standard">
+                    <div class="row" >
+                        <div class="col-4">
+                            <md-radio-group ng-model="factoresInteres">
+                                <div class="col-12">
+                                    <fieldset class="standard">
+                                        <md-radio-button value="efecAnual">Efectivo Anual</md-radio-button>
+                                    </fieldset>
+                                </div>
+                            </md-radio-group>
+                        </div>
+                        <div class="col-4">
+                            <md-radio-group ng-model="factoresInteres">
+                                <div class="col-12">
+                                    <fieldset class="standard">
+                                        <md-radio-button value="nominAnual">Nominal Anual</md-radio-button>
+                                    </fieldset>
+                                </div>
+                            </md-radio-group>
+                        </div>
+                        <div class="col-4">
+                            <md-radio-group ng-model="factoresInteres">
+                                <div class="col-12">
+                                    <fieldset class="standard">
                                         <md-radio-button value="periodica">Periodica</md-radio-button>
-                                </fieldset>
-                            </div>
-                        </md-radio-group>
+                                    </fieldset>
+                                </div>
+                            </md-radio-group>
+                        </div>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-show="{{ factoresInteres }} == efecAnual">
                         <div class="col-4">
                             <h3 style="font-size:18px">Efectiva Anual:</h3>
                         </div>
@@ -165,7 +175,7 @@
                             <input style="height: 20px" type="text" class="form-control" placeholder="%" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-show="{{ factoresInteres }} == nominAnual">
                         <div class="col-4">
                             <h3 style="font-size:18px">Nominal Anual:</h3>
                         </div>
@@ -173,7 +183,7 @@
                             <input style="height: 20px" type="text" class="form-control" placeholder="%" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-show="{{ factoresInteres }} == periodica">
                         <div class="col-4">
                             <h3 style="font-size:18px">Periodica:</h3>
                         </div>

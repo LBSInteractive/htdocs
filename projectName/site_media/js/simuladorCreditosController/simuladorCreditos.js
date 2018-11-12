@@ -18,6 +18,7 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
     /*--------------------------    Area de Declaracion     ------------------------------*/
     //*************************(  Contenido del controller )********************************
     $scope.variable = "variable";
+    $scope.factoresInteres = "efecAnual";
     //**************************************************************************************
     //*************************( Contenido del controller global)***************************
     //Variable Global rootScope
