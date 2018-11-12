@@ -84,7 +84,7 @@
                             <h3 style="font-size:15px">Valor Prestamo:</h3>
                         </div>
                         <div class="col-9">
-                            <input style="height: 20px" type="text" class="form-control" placeholder="$" aria-label="Username" aria-describedby="basic-addon1">
+                            <input style="height: 20px" type="number" class="form-control" placeholder="$" aria-label="Username" aria-describedby="basic-addon1" ng-pattern="/^1234$/" step="0.01">
                         </div>
                     </div>
                     <br>
@@ -112,9 +112,14 @@
                         <div class="col-3">
                             <h3 style="font-size:20px">Plazo:</h3>
                         </div>
-                        <div class="col-4">
-                            <input style="height: 20px" type="text" class="form-control" placeholder="Años" aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                    <md-slider md-discrete ng-model="plazo" step="1" min="0" max="100" aria-label="plazo"></md-slider>
+                            </div>
+                            <div class="col-6">
+                                <input style="height: 20px" type="number" ng-model="plazo" class="form-control" placeholder="Años" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>                 
                     </div>
                     <hr>
                     Periodo de amortización
