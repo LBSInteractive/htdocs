@@ -12,7 +12,7 @@ var app = angular.module("simuladorCreditos", ['ngMaterial']);
 
 /*------------------------------- Area Modulo Controller --------------------------------*/
 //.controller ('Nombre Controller', directiva en function($scope)) Inyectables
-app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootScope, $http) {
+app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootScope, $http, $filter) {
 
 
     /*--------------------------    Area de Declaracion     ------------------------------*/
@@ -116,29 +116,32 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
 
         },
         nominalAnual: function(){
-            //ip = ((1 + ip)^(360/dias)) -1 
+            //ip = ((1 + ip)^(360/dias)) -1
 
         },
         periodico: function(){
-            //EA = ((1 + ip) ^ (360/dias)) -1 
+            //EA = ((1 + ip) ^ (360/dias)) -1
 
         }
     };
     //**************************************************************************************
     /*--------------------------            $gui            ------------------------------*/
-   
 
 
 
 
 
-    /*--------------------------           $tools           ------------------------------*/
+
+    /*--------------------------           $watchers          ------------------------------*/
     //************************* (    Ejecuciones Simples  ) ********************************
-    $scope.$tools = {
-        ejemplo: function() {
-            $scope.variable = "Nuevo Valor Tools";
-        }
-    };
+    // $scope.$watch("identificacion",function(newValue,oldValue) {
+    //
+    //    if (newValue===oldValue) {
+    //      return;
+    //    }
+    //
+    //    $scope.identificacion = $filter('number')(newValue);
+    //  });
     //**************************************************************************************
     /*--------------------------           $tools           ------------------------------*/
 
@@ -149,8 +152,15 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
     /*--------------------------        $complexSystem      ------------------------------*/
     //*************************(    Ejecuciones Complejas ) ********************************
     $scope.$complexSystem = {
-        ejemplo: function() {
-            $scope.variable = "Nuevo Valor Complejo";
+        RegExpNombre: function() {
+            var reg = /^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$/g;
+            if(reg.test($scope.nombre)){
+                return true;
+            } else {
+                 return false;
+            }
+
+
         }
     };
     //**************************************************************************************
@@ -161,20 +171,7 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
 
 
     /*--------------------------            Arranque         ------------------------------*/
-    console.log("Hello World!");
-    //Ejemplo de ejecucion
-    $scope.$complexSystem.ejemplo();
-    console.log($scope.variable);
 
-    /**
-     * Request GET
-     */
-    $scope.$api.consultaGet();
-
-    /**
-     * Request POST
-     */
-    $scope.$api.consultaPost();
     /*--------------------------            Arranque         ------------------------------*/
 
 })

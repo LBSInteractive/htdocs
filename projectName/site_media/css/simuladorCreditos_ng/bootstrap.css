@@ -1,12 +1,12 @@
 ﻿/*!
-* Created by Kroplet (https://www.kroplet.com) 
-* The easiest way to create Bootstrap 4 themes. 
+* Created by Kroplet (https://www.kroplet.com)
+* The easiest way to create Bootstrap 4 themes.
 */
 
 /*!
-* Bootstrap v4.0.0-beta.2 (https://getbootstrap.com) 
-* Copyright 2011-2017 The Bootstrap Authors 
-* Copyright 2011-2017 Twitter, Inc. 
+* Bootstrap v4.0.0-beta.2 (https://getbootstrap.com)
+* Copyright 2011-2017 The Bootstrap Authors
+* Copyright 2011-2017 Twitter, Inc.
 * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)*/
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700|Sacramento");
 :root {
@@ -6423,7 +6423,7 @@ section {
     padding: 100px 20px 20px 20px; } }
 
 .form-control {
-  height: 45px; }
+  height: 20px; }
 
 .form-control:hover, .form-control:focus {
   border-color: #aa00ff; }

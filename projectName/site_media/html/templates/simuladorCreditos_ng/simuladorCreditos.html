@@ -51,7 +51,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-4">
-                                <img src="/projectName/frameworks/card/img/dinner.png" width="100px" class=" img-fluid rounded-circle" />
+                                <img src="/projectName/frameworks/card/img/dinner.png" class=" img-fluid rounded-circle" />
                             </div>
                             <div class="col-6">
                                 <h3>Simulador de Créditos</h3>
@@ -65,61 +65,81 @@
                     <br>
                     <div class="row">
                         <div class="col-3">
-                            <h3 style="font-size:20px">Nombre:</h3>
+                            <p>Nombre:</p>
                         </div>
-                        <div class="col-9">
-                            <input style="height: 20px" type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <h3 style="font-size:20px">ID:</h3>
-                        </div>
-                        <div class="col-9">
-                            <input style="height: 20px" type="text" class="form-control" placeholder="Indentificación" aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <h3 style="font-size:15px">Valor Prestamo:</h3>
-                        </div>
-                        <div class="col-9">
-                            <input style="height: 20px" type="number" class="form-control" placeholder="$" aria-label="Username" aria-describedby="basic-addon1" ng-pattern="/^1234$/" step="0.01">
+                        <div class="col-8">
+                            <input size="25px" type="text" ng-model="nombre" style="background-color: {{$complexSystem.RegExpNombre() ? '#B2DFDB' : 'white'}}" ng-change="" class="form-control" placeholder="Nombre">
                         </div>
                     </div>
                     <br>
+                    <div class="row">
+                        <div class="col-3">
+                            <p>ID:</p>
+                        </div>
+                        <div class="col-4">
+                            <input size="25px" type="text" class="form-control" placeholder="Indentificación" ng-model="identificacion">
+                        </div>
+                        <div class="col-5">
+                            <p>{{identificacion == false ? '' : (identificacion | number)}}</p>
+                        </div>
+                    </div>
                     <br>
                     <div class="row">
                         <div class="col-3">
-                            <h3 style="font-size:15px">Tipo Préstamo:</h3>
+                            <p>Valor Prestamo:</p>
+                        </div>
+                        <div class="col-4">
+                            <input size="25px" type="number" class="form-control" ng-model="prestamo" placeholder="$" aria-label="Username" aria-describedby="basic-addon1" step="0.01">
+                        </div>
+                        <div class="col-5">
+                            <p>{{ prestamo | currency }}</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-3">
+                            <p>Tipo Préstamo:</p>
                         </div>
                         <div class="col-4">
                             <fieldset class="standard">
-                                <md-checkbox type="checkbox" ng-model="selectTypeEnd.cuotaFija" ng-disabled="selectTypeEnd.periodoGracia == true" aria-label="Checkbox 1">
+                                <md-checkbox style="font-size:11px;padding-top: 2px;" type="checkbox" ng-model="selectTypeEnd.cuotaFija" ng-disabled="selectTypeEnd.periodoGracia == true" aria-label="Checkbox 1">
                                     Cuota Fija
                                 </md-checkbox>
                             </fieldset>
                         </div>
-                        <div class="col-4">
+                        <div class="col-5">
                             <fieldset class="standard">
-                                <md-checkbox type="checkbox" ng-model="selectTypeEnd.periodoGracia" ng-disabled="selectTypeEnd.cuotaFija == true" aria-label="Checkbox 1">
+                                <md-checkbox style="font-size:11px;padding-top: 2px;" type="checkbox" ng-model="selectTypeEnd.periodoGracia" ng-disabled="selectTypeEnd.cuotaFija == true" aria-label="Checkbox 1">
                                     Periodo de Gracia
                                 </md-checkbox>
                             </fieldset>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <h3 style="font-size:20px">Plazo:</h3>
+                    <br>
+                    <div class="row" style="padding-left:40px">
+                        <div class="col-3" style="padding-right:50px">
+                            <p>Plazo:</p>
                         </div>
                         <div class="row">
-                            <div class="col-6">
-                                    <md-slider md-discrete ng-model="plazo" step="1" min="0" max="100" aria-label="plazo"></md-slider>
+                            <div class="col-1">
                             </div>
-                            <div class="col-6">
-                                <input style="height: 20px" type="number" ng-model="plazo" class="form-control" placeholder="Años" aria-label="Username" aria-describedby="basic-addon1">
+                            <div class="col-10">
+                                <md-slider-container>
+                                    <span>%</span>
+                                    <md-slider aria-label="plazo" md-discrete step="1" min="0" max="100" ng-model="plazo" class="md-warn">
+                                    </md-slider>
+                                </md-slider-container>
                             </div>
-                        </div>                 
+                            <div class="col-1">
+                            </div>
+                            <div class="col-1">
+                            </div>
+                            <div class="col-10">
+                                <input style="height: 20px" type="number" ng-model="plazo" class="form-control" placeholder="Años">
+                            </div>
+                            <div class="col-1">
+                            </div>
+                        </div>
                     </div>
                     <hr>
                     Periodo de amortización
@@ -143,7 +163,7 @@
                     <hr>
                     Tasas de Interes
                     <hr>
-                    <div class="row" >
+                    <div class="row">
                         <div class="col-4">
                             <md-radio-group ng-model="factoresInteres">
                                 <div class="col-12">
@@ -174,9 +194,9 @@
                     </div>
                     <div class="row" ng-if="factoresInteres == 'efecAnual'">
                         <div class="col-4">
-                            <h3 style="font-size:18px" >Efectiva Anual:</h3>
+                            <h3 style="font-size:18px">Efectiva Anual:</h3>
                         </div>
-                        <div class="col-8">
+                        <div class="col-7">
                             <input style="height: 20px" type="text" class="form-control" placeholder="%" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
@@ -184,7 +204,7 @@
                         <div class="col-4">
                             <h3 style="font-size:18px">Nominal Anual:</h3>
                         </div>
-                        <div class="col-8">
+                        <div class="col-7">
                             <input style="height: 20px" type="text" class="form-control" placeholder="%" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
@@ -192,7 +212,7 @@
                         <div class="col-4">
                             <h3 style="font-size:18px">Periodica:</h3>
                         </div>
-                        <div class="col-8">
+                        <div class="col-7">
                             <input style="height: 20px" type="text" class="form-control" placeholder="%" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
@@ -202,7 +222,7 @@
 
                 <div class="col-sm-7 offset-sm-5 px-0 py-5">
                     <!--Why This Domain-->
-                    <section class="pt-4">
+                    <!-- <section class="pt-4">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-sm-8 mx-auto text-center">
@@ -262,7 +282,7 @@
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </section> -->
 
                     <!--footer-->
                     <section class="mt-2">
@@ -271,7 +291,7 @@
                                 <div class="col-sm-12">
                                     <p class="text-muted text-center">
                                         &copy; 2018 LBSInteractive by
-                                        <a href="#">Jefersson Ramos & Brayan Murillo</a><i class="fa fa-spinner fa-spin"></i>
+                                        <a href="#">Jefersson Ramos & Brayan Murillo &nbsp;</a><i class="fa fa-spinner fa-spin"></i>
                                     </p>
                                 </div>
                             </div>
@@ -282,12 +302,6 @@
         </div>
     </section>
 
-
-    <script>
-        var popper = new Popper(referenceElement, onPopper, {
-            placement: 'top'
-        });
-    </script>
 
     <script src="../../../../../node_modules/angular-animate/angular-animate.min.js"></script>
     <script src="../../../../../node_modules/angular-aria/angular-aria.min.js"></script>

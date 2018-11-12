@@ -45,4 +45,8 @@ miEtiqueta {
 
 }
 
+md-slider .md-track-ticks canvas {
+  height: 0px !important;
+}
+
 /*-------------------------------- CSS -----------------------------*/
