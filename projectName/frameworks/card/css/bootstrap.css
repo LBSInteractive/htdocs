@@ -1,12 +1,12 @@
 ﻿/*!
-* Created by Kroplet (https://www.kroplet.com) 
-* The easiest way to create Bootstrap 4 themes. 
+* Created by Kroplet (https://www.kroplet.com)
+* The easiest way to create Bootstrap 4 themes.
 */
 
 /*!
-* Bootstrap v4.0.0-beta.2 (https://getbootstrap.com) 
-* Copyright 2011-2017 The Bootstrap Authors 
-* Copyright 2011-2017 Twitter, Inc. 
+* Bootstrap v4.0.0-beta.2 (https://getbootstrap.com)
+* Copyright 2011-2017 The Bootstrap Authors
+* Copyright 2011-2017 Twitter, Inc.
 * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)*/
 @import url("https://fonts.googleapis.com/css?family=Karla:400,400i,700,700i");
 :root {
@@ -6355,13 +6355,17 @@ body {
   background-attachment: fixed; }
 
 body.demo-first {
-  background-image: linear-gradient(60deg, rgba(255, 234, 0, 0.5) 5%, rgba(0, 200, 83, 0.35)), url("../img/bg.jpg"); }
+  background-image: linear-gradient(60deg, rgba(255, 234, 0, 0.5) 5%, rgba(0, 200, 83, 0.35)), url("../img/bg.jpg");
+  background-size: auto;
+}
 
 body.demo-two {
-  background-image: url(../img/bg-mountain.png); }
+  background-image: url(../img/bg.png);
+  background-size: auto 980px;
+}
 
 .brand-logo {
-  width: 120px; }
+  width: 100%; }
 
 .hero {
   height: 100vh;
@@ -6394,7 +6398,7 @@ body.demo-two {
   background-position: center; }
 
 .demo-two .bg-texture {
-  background: rgba(0, 0, 0, 0.3); }
+  background: rgba(0, 0, 0, 0.60); }
 
 .bg-alt {
   background-color: #fff; }

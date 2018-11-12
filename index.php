@@ -5,14 +5,11 @@
         <title>Simulador</title>
         <meta name="description" content="Love profile card." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/projectName/frameworks/card/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/projectName/frameworks/card/css/bootstrap.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
         <link rel="shortcut icon" type="image/png" href="/projectName/site_media/img/favicon/default.png" sizes="64x64"/>
     </head>
     <body class="demo-two">
-        <video autoplay loop class="video-background" muted plays-inline>
-            <source src="https://wireddots.metalogicssoft.com/themes/card/img/mountains.mp4" type="video/mp4">
-        </video>
         <!--hero section-->
         <section class="hero bg-indigo">
             <div class="container">
@@ -22,7 +19,7 @@
                             <div class="mb-3">
                                 <img src="/projectName/frameworks/card/img/dinner.png" class="brand-logo img-fluid rounded-circle"/>
                             </div>
-                            <h1 class="pt-4 text-white h2"> <span>Simulador</span><span> de Creditos</span><br/></h1>
+
                             <p class="mt-4 lead text-white">
                                 v0.1 Beta Test
                             </p>
