@@ -5,6 +5,7 @@
         <title>Simulador</title>
         <meta name="description" content="Love profile card." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="rgb(6, 140, 173)">
         <link rel="stylesheet" href="/projectName/frameworks/card/css/bootstrap.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
         <link rel="shortcut icon" type="image/png" href="/projectName/site_media/img/favicon/default.png" sizes="64x64"/>
