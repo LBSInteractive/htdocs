@@ -58,9 +58,9 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
              * @param  $http response Peticion
              * @return none
              */
-            dataService.then(function(response){
-                 console.log(response.data);
-            },function(response){
+            dataService.then(function(response) {
+                console.log(response.data);
+            }, function(response) {
                 console.log("Error");
             });
 
@@ -90,9 +90,9 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
              * @param  $http response Peticion
              * @return none
              */
-            dataService.then(function(response){
-                 console.log(response.data);
-            },function(response){
+            dataService.then(function(response) {
+                console.log(response.data);
+            }, function(response) {
                 console.log("Error");
             });
         }
@@ -110,16 +110,16 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
         ejemplo: function() {
             $scope.variable = "Nuevo Valor pantalla";
         },
-        efectivoAnual: function(){
+        efectivoAnual: function() {
             //ip = ((1 + EA)^(dias/360)) -1
 
 
         },
-        nominalAnual: function(){
+        nominalAnual: function() {
             //ip = ((1 + ip)^(360/dias)) -1
 
         },
-        periodico: function(){
+        periodico: function() {
             //EA = ((1 + ip) ^ (360/dias)) -1
 
         }
@@ -143,7 +143,7 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
     //    $scope.identificacion = $filter('number')(newValue);
     //  });
     //**************************************************************************************
-    /*--------------------------           $tools           ------------------------------*/
+    /*--------------------------           $watchers           -----------------------------*/
 
 
 
@@ -154,10 +154,10 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
     $scope.$complexSystem = {
         RegExpNombre: function() {
             var reg = /^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$/g;
-            if(reg.test($scope.nombre)){
+            if (reg.test($scope.nombre)) {
                 return true;
             } else {
-                 return false;
+                return false;
             }
 
 
@@ -169,12 +169,39 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
 
 
 
-
     /*--------------------------            Arranque         ------------------------------*/
+    $scope.includeMobileTemplate = false;
+    var screenWidth = window.innerWidth;
 
-    /*--------------------------            Arranque         ------------------------------*/
+    if (screenWidth < 700) {
+        $scope.includeMobileTemplate = true;
+    }
+
 
 })
 /*---------------------------------------------Area Modulo Controller-----------------------------------------------*/
+//************************************************************************************************************************
 
+
+
+
+
+
+//************************************************************************************************************************
+/*--------------------------------------------Filters------------------------------------------------*/
+
+app.filter('porcentaje', ['$filter', function($filter) {
+    var regExpNumber = /^([0-9]|[1-9][0-9]|[1-9][0-9][0-9])$/g;
+    return function(input) {
+        number = Number(input);
+        if (!isNaN(number)) {
+            return (number) + '%';
+        }else{
+            return 0 + '%';
+        }
+
+    };
+}]);
+
+/*--------------------------------------------Filters-----------------------------------------------*/
 //************************************************************************************************************************

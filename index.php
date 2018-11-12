@@ -27,7 +27,7 @@
                                 <a href="https://github.com/LBSInteractive/htdocs" target="_blank"><em class="ion-social-github text-github-alt icon-sm mr-3"></em></a>
                             </p>
                             <div class="pt-3">
-                                <a href="http://localhost/projectName/site_media/html/modules/simuladorCreditosMC/simuladorCreditosController.php" class="btn btn-white-alt text-blue btn-lg">
+                                <a href="/projectName/site_media/html/modules/simuladorCreditosMC/simuladorCreditosController.php" class="btn btn-white-alt text-blue btn-lg">
                                     Ir al Simulador..
                                 </a>
                             </div>
