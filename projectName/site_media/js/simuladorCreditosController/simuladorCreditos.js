@@ -17,7 +17,7 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
 
     /*--------------------------    Area de Declaracion     ------------------------------*/
     //*************************(  Contenido del controller )********************************
-    $scope.variable = "variable";
+    $scope.periodoAmortizacion = 0;
     $scope.factoresInteres = "efecAnual";
     //**************************************************************************************
     //*************************( Contenido del controller global)***************************
@@ -122,6 +122,9 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
         periodico: function() {
             //EA = ((1 + ip) ^ (360/dias)) -1
 
+        },
+        calcular: function() {
+
         }
     };
     //**************************************************************************************
@@ -172,7 +175,6 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
     /*--------------------------            Arranque         ------------------------------*/
     $scope.includeMobileTemplate = false;
     var screenWidth = window.innerWidth;
-
     if (screenWidth < 700) {
         $scope.includeMobileTemplate = true;
     }
@@ -196,7 +198,7 @@ app.filter('porcentaje', ['$filter', function($filter) {
         number = Number(input);
         if (!isNaN(number)) {
             return (number) + '%';
-        }else{
+        } else {
             return 0 + '%';
         }
 

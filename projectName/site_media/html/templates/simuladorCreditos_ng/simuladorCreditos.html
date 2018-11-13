@@ -188,7 +188,7 @@
                             </md-radio-group>
                         </div>
                     </div>
-                    <div class="row" ng-if="factoresInteres == 'efecAnual'">
+                    <div class="row" ng-show="factoresInteres == 'efecAnual'">
                         <div class="col-ms-4 col-md-4">
                             <h3 style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Efectiva Anual:</h3>
                         </div>
@@ -199,7 +199,7 @@
                             {{efectivoAnual | porcentaje }}
                         </div>
                     </div>
-                    <div class="row" ng-if="factoresInteres == 'nominAnual'">
+                    <div class="row" ng-show="factoresInteres == 'nominAnual'">
                         <div class="col-ms-4 col-md-4">
                             <h3 style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Nominal Anual:</h3>
                         </div>
@@ -210,7 +210,7 @@
                             {{nominalAnual | porcentaje }}
                         </div>
                     </div>
-                    <div class="row" ng-if="factoresInteres == 'periodica'">
+                    <div class="row" ng-show="factoresInteres == 'periodica'">
                         <div class="col-ms-4 col-md-4">
                             <h3 style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Periodica:</h3>
                         </div>
@@ -225,7 +225,12 @@
                 </div>
 
 
-                <div class="col-sm-7 offset-sm-5 px-0 py-5">
+                <div class="col-sm-7 offset-sm-5 px-0">
+                    <center>
+                        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                            <md-button ng-disabled="true" class="md-raised md-primary">Calcular</md-button>
+                        </section>
+                    </center>
                     <!--Why This Domain-->
                     <!-- <section class="pt-4">
                         <div class="container-fluid">

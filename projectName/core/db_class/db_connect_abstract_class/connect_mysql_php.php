@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Clase abstracta, Conextar BD, CRUD
+ * Abstract Class for connect MySQL Database with mysqli
+ * @var Class
  */
 abstract class Conectar
 {

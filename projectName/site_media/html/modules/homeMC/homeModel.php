@@ -5,7 +5,7 @@
 ***************************************************************************************/
 
 //Require Clase abstracta de conexion
-require_once '../../../../core/db_class/db_connect_abstract_class/connect_mysql_php.php';
+require_once '../../../../core/db_class/db_connect_abstract_class/connect_oracle_php.php';
 
 /****************************************************************************************/
 class Model extends Conectar
@@ -15,7 +15,9 @@ class Model extends Conectar
      * Variables
      */
     public $var = "DEFAULT";
-
+    public $tns = "(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=127.0.0.1)(PORT=1521)))";
+      public $db_user = 'ORACLETEST';
+      public $db_pass = 'toor';
 
     /**
      * __construct Apuntador de Base de Datos
@@ -26,7 +28,8 @@ class Model extends Conectar
          * $this->db_name Cambiar Apuntador de Base de Datos
          * @var String
          */
-        $this->db_name = 'u948420309_esbdc';
+        $this->db_name = 'ORACLETEST';
+        $this->dbh = new PDO('oci:dbname='.$this->tns, $this->db_user, $this->db_pass);
     }
 
 
@@ -40,6 +43,5 @@ class Model extends Conectar
         $data = $this->get_results_from_query_assoc($query);
         return $data;
     }
-
 }
 /****************************************************************************************/
