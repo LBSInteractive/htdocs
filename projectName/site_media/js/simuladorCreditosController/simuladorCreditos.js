@@ -19,9 +19,6 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
     //*************************(  Contenido del controller )********************************
     $scope.periodoAmortizacion = 0;
     $scope.factoresInteres = "efecAnual";
-    $scope.anios = 0;
-    $scope.meses = 0;
-    $scope.total = ($scope.anios > 0) ? ($scope.anios/12)+$scope.meses : $scope.meses;
     //**************************************************************************************
     //*************************( Contenido del controller global)***************************
     //Variable Global rootScope
@@ -127,7 +124,14 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
 
         },
         calcular: function() {
-
+            var periodoAmortizacion = 0;
+            if ($scope.selectTypeEnd.mensual == true) {
+                periodoAmortizacion = 12;
+            } else if ($scope.selectTypeEnd.trimestral == true) {
+                periodoAmortizacion = ;
+            } else {
+                periodoAmortizacion = 0;
+            }
         }
     };
     //**************************************************************************************
@@ -140,15 +144,14 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
 
     /*--------------------------           $watchers          ------------------------------*/
     //************************* (    Ejecuciones Simples  ) ********************************
-     $scope.$watch("total",function(newValue,oldValue) {
+    // $scope.$watch("identificacion",function(newValue,oldValue) {
     //
-        if (newValue===oldValue) {
-          return;
-        }
-
-        //$scope.identificacion = $filter('number')(newValue);
-        $scope.total = ($scope.anios > 0) ? ($scope.anios/12)+$scope.meses : $scope.meses;
-      });
+    //    if (newValue===oldValue) {
+    //      return;
+    //    }
+    //
+    //    $scope.identificacion = $filter('number')(newValue);
+    //  });
     //**************************************************************************************
     /*--------------------------           $watchers           -----------------------------*/
 
