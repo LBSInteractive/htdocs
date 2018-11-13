@@ -12,7 +12,6 @@
     <script src="../../../../site_media/js/general/general_Meta.js"></script>
 
 
-
     <script src="../../../../../node_modules/angular/angular.min.js"></script>
 
 
@@ -120,9 +119,20 @@
                         <div class="col-11">
                             <md-slider-container>
                                 <md-input-container style="padding-top:10px">
-                                    <input type="number" ng-model="plazo" placeholder="Plazo" aria-label="red" aria-controls="red-slider">
+                                    <input type="number" ng-model="anios" placeholder="Años" aria-label="red" aria-controls="red-slider">
                                 </md-input-container>
-                                <md-slider aria-label="plazo" md-discrete step="1" min="0" max="100" ng-model="plazo" class="md-warn">
+                                <md-slider aria-label="anios" md-discrete step="1" min="0" max="100" ng-model="anios" class="md-warn">
+                                </md-slider>
+                            </md-slider-container>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:15px">
+                        <div class="col-11">
+                            <md-slider-container>
+                                <md-input-container style="padding-top:10px">
+                                    <input type="number" ng-model="meses" placeholder="Meses" aria-label="red" aria-controls="red-slider">
+                                </md-input-container>
+                                <md-slider aria-label="meses" md-discrete step="1" min="0" max="12" ng-model="meses" class="md-warn">
                                 </md-slider>
                             </md-slider-container>
                         </div>
