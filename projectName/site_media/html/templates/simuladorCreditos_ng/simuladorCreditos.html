@@ -67,8 +67,9 @@
                             <p>Nombre:</p>
                         </div>
                         <div class="col-8">
-                            <input size="25px" type="text" ng-model="nombre" style="background-color: {{$complexSystem.RegExpNombre() ? '#B2DFDB' : 'white'}}" ng-change="" class="form-control" placeholder="Nombre">
+                            <input matInput size="25px" type="text" ng-model="nombre" style="background-color: {{$complexSystem.RegExpNombre() ? '#B2DFDB' : 'white'}}" ng-change="" class="form-control" placeholder="Nombre">
                         </div>
+
                     </div>
                     <br>
                     <div class="row">
@@ -137,6 +138,9 @@
                             </md-slider-container>
                         </div>
                     </div>
+                    <md-input-container style="padding-top:10px">
+                        <input type="texto" ng-model="total" placeholder="Total Meses" aria-label="red" aria-controls="red-slider">
+                    </md-input-container>
                     <hr>
                     Periodo de amortización
                     <hr>
