@@ -19,6 +19,9 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
     //*************************(  Contenido del controller )********************************
     $scope.variable = "variable";
     $scope.factoresInteres = "efecAnual";
+    $scope.anios = 0;
+    $scope.meses = 0;
+    $scope.total = ($scope.anios > 0) ? ($scope.anios/12)+$scope.meses : $scope.meses;
     //**************************************************************************************
     //*************************( Contenido del controller global)***************************
     //Variable Global rootScope
@@ -134,14 +137,15 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
 
     /*--------------------------           $watchers          ------------------------------*/
     //************************* (    Ejecuciones Simples  ) ********************************
-    // $scope.$watch("identificacion",function(newValue,oldValue) {
+     $scope.$watch("total",function(newValue,oldValue) {
     //
-    //    if (newValue===oldValue) {
-    //      return;
-    //    }
-    //
-    //    $scope.identificacion = $filter('number')(newValue);
-    //  });
+        if (newValue===oldValue) {
+          return;
+        }
+
+        //$scope.identificacion = $filter('number')(newValue);
+        $scope.total = ($scope.anios > 0) ? ($scope.anios/12)+$scope.meses : $scope.meses;
+      });
     //**************************************************************************************
     /*--------------------------           $watchers           -----------------------------*/
 
