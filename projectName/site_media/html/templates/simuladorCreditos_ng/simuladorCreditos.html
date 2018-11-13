@@ -120,9 +120,9 @@
                         <div class="col-11">
                             <md-slider-container>
                                 <md-input-container style="padding-top:10px">
-                                    <input type="number" ng-model="anios" placeholder="Años" aria-label="red" aria-controls="red-slider">
+                                    <input type="number" ng-model="anios" placeholder="Años" ng-change="$complexSystem.reCalcularMeses()" aria-label="red" aria-controls="red-slider">
                                 </md-input-container>
-                                <md-slider aria-label="anios" md-discrete step="1" min="0" max="100" ng-model="anios" class="md-warn">
+                                <md-slider aria-label="anios" ng-change="$complexSystem.reCalcularMeses()" md-discrete step="1" min="0" max="100" ng-model="anios" class="md-warn">
                                 </md-slider>
                             </md-slider-container>
                         </div>
@@ -131,16 +131,22 @@
                         <div class="col-11">
                             <md-slider-container>
                                 <md-input-container style="padding-top:10px">
-                                    <input type="number" ng-model="meses" placeholder="Meses" aria-label="red" aria-controls="red-slider">
+                                    <input type="number" ng-model="meses" placeholder="Meses" ng-change="$complexSystem.reCalcularMeses()" aria-label="red" aria-controls="red-slider">
                                 </md-input-container>
-                                <md-slider aria-label="meses" md-discrete step="1" min="0" max="12" ng-model="meses" class="md-warn">
+                                <md-slider aria-label="meses" ng-change="$complexSystem.reCalcularMeses()" md-discrete step="1" min="0" max="12" ng-model="meses" class="md-warn">
                                 </md-slider>
                             </md-slider-container>
                         </div>
+                        <div class="col-4">
+                            <p>Total Meses</p>
+                        </div>
+                        <div class="col-4" style="pannding-right:20px">
+                            <center>
+                                <input size="25px" type="texto" readonly ng-model="total" placeholder="Total Meses" class="form-control">
+                            </center>
+                        </div>
+
                     </div>
-                    <md-input-container style="padding-top:10px">
-                        <input type="texto" ng-model="total" placeholder="Total Meses" aria-label="red" aria-controls="red-slider">
-                    </md-input-container>
                     <hr>
                     Periodo de amortización
                     <hr>

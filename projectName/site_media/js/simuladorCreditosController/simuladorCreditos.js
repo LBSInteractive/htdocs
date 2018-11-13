@@ -19,6 +19,10 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
     //*************************(  Contenido del controller )********************************
     $scope.periodoAmortizacion = 0;
     $scope.factoresInteres = "efecAnual";
+    $scope.total = 0;
+    $scope.anios = 0;
+    $scope.meses = 0;
+
     //**************************************************************************************
     //*************************( Contenido del controller global)***************************
     //Variable Global rootScope
@@ -128,7 +132,7 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
             if ($scope.selectTypeEnd.mensual == true) {
                 periodoAmortizacion = 12;
             } else if ($scope.selectTypeEnd.trimestral == true) {
-                periodoAmortizacion = ;
+                periodoAmortizacion = 12;
             } else {
                 periodoAmortizacion = 0;
             }
@@ -171,6 +175,9 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
             }
 
 
+        },
+        reCalcularMeses: function() {
+            $scope.total = (Number($scope.anios) * 12) + (Number($scope.meses)) ;
         }
     };
     //**************************************************************************************
