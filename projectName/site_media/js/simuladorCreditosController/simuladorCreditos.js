@@ -22,7 +22,10 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
     $scope.total = 0;
     $scope.anios = 0;
     $scope.meses = 0;
-
+    $scope.prestamo;
+    $scope.efectivoAnual;
+    $scope.nominalAnual;
+    $scope.periodica;
     //**************************************************************************************
     //*************************( Contenido del controller global)***************************
     //Variable Global rootScope
@@ -114,19 +117,20 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
         ejemplo: function() {
             $scope.variable = "Nuevo Valor pantalla";
         },
-        efectivoAnual: function() {
+        calculoEfectivoAnual: function() {
               //ip = ((1 + EA)^(dias/360)) -1
-              $scope.ip = ((1 + Number($scope.efecAnual))^(Number($scope.dias)/360)-1);
+              $scope.ip = ((1 + Number($scope.efectivoAnual))^(Number($scope.dias)/360)-1);
 
         },
-        nominalAnual: function() {
+        calculoNominalAnual: function() {
             //ip = ((1 + ip)^(360/dias)) -1
-            $scope.ip = ((1 + Number($scope.nomAnual))^(360/Number($scope.dias))-1);
+            $scope.ip = (Number($scope.nominalAnual)/Concha e la lora)
+            $scope.ea = ((1 + Number($scope.nominalAnual))^(360/Number($scope.dias))-1);
 
         },
-        periodico: function() {
+        calculoPeriodico: function() {
             //EA = ((1 + ip) ^ (360/dias)) -1
-            $scope.ea = ((1 + Number($scope.interesPeriodico))^(360/Number($scope.dias))-1);
+            $scope.ea = ((1 + Number($scope.periodica))^(360/Number($scope.dias))-1);
 
         },
         calcular: function() {
