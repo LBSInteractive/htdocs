@@ -117,20 +117,32 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
         ejemplo: function() {
             $scope.variable = "Nuevo Valor pantalla";
         },
-        calculoEfectivoAnual: function() {
-              //ip = ((1 + EA)^(dias/360)) -1
-              $scope.ip = ((1 + Number($scope.efectivoAnual))^(Number($scope.dias)/360)-1);
-
+        efectivoAnualIngresado: function() {
+            $scope.efectivoAnualHomologo = $scope.efectivoAnual;
+            $scope.nominalAnual = 0;
+            $scope.nominalAnualHomologo = 0;
+            $scope.periodica = 0;
+            $scope.periodicaHomologo = 0;
+            $scope.periodica = Math.pow( (1 +  (Number($scope.efectivoAnual)/100) ) , (90/360) ) - 1; // 90 cambiar por dias
+            $scope.periodicaHomologo = ((Math.pow( (1 +  (Number($scope.efectivoAnual)/100) ) , (90/360) ) - 1)*100).toFixed(2); // 90 cambiar por dias
+            $scope.nominalAnual = Number($scope.periodica*4); //4 cambiar por ciclo dias
+            $scope.nominalAnualHomologo = (Number($scope.periodica*4)*100).toFixed(2); // 4 cambiar por ciclo dias
         },
         calculoNominalAnual: function() {
-            //ip = ((1 + ip)^(360/dias)) -1
-            $scope.ip = (Number($scope.nominalAnual)/Concha e la lora)
-            $scope.ea = ((1 + Number($scope.nominalAnual))^(360/Number($scope.dias))-1);
+            $scope.nominalAnualHomologo = $scope.nominalAnual;
+            $scope.efectivoAnual = 0;
+            $scope.efectivoAnualHomologo = 0;
+            $scope.periodica = 0;
+            $scope.periodicaHomologo = 0;
 
+            $scope.periodica = Number($scope.nominalAnual) / 4; // 4 cambiar por ciclo dias
+            $scope.periodicaHomologo = (Number($scope.nominalAnual) / 4).toFixed(2); // 90 cambiar por dias
+            $scope.nominalAnual = Number($scope.periodica*4); //4 cambiar por ciclo dias
+            $scope.nominalAnualHomologo = (Number($scope.periodica*4)*100).toFixed(2); // 4 cambiar por ciclo dias
         },
         calculoPeriodico: function() {
             //EA = ((1 + ip) ^ (360/dias)) -1
-            $scope.ea = ((1 + Number($scope.periodica))^(360/Number($scope.dias))-1);
+            $scope.ea = ((1 + Number($scope.periodica)) ^ (360 / Number($scope.dias)) - 1);
 
         },
         calcular: function() {
@@ -183,7 +195,12 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
 
         },
         reCalcularMeses: function() {
-            $scope.total = (Number($scope.anios) * 12) + (Number($scope.meses)) ;
+            $scope.total = (Number($scope.anios) * 12) + (Number($scope.meses));
+        },
+        validarAnios: function() {
+            if (Number($scope.anios) < 3 || Number($scope.anios) > 7) {
+                $scope.anios = 0;
+            }
         }
     };
     //**************************************************************************************
