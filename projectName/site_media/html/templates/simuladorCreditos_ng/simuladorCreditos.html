@@ -46,7 +46,7 @@
     <section class="bg-white hero p-0">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-5 bg-light text-center col-fixed" style="padding: 50px 20px 20px 20px; overflow:scroll;">
+                <div class="col-sm-5 bg-light text-center col-fixed" style="padding: 50px 20px 20px 20px; overflow-y:scroll;">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
@@ -264,11 +264,11 @@
                         </div>
                         <div class="row">
                             <div class="col-ms-4 col-md-4">
-                                <h3 style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Efectiva Anual:</h3>
+                                <p style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Efectiva Anual:</p>
                             </div>
                             <div class="col-ms-12 col-md-5">
-                                <input style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}" type="number" class="form-control" placeholder="%" ng-change="$gui.efectivoAnualIngresado()" aria-label="Username"  ng-model="efectivoAnual" aria-describedby="basic-addon1"
-                                  ng-disabled="factoresInteres != 'efecAnual'">
+                                <input style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}" type="number" class="form-control" placeholder="%" ng-change="$gui.efectivoAnualIngresado()" aria-label="Username" ng-model="efectivoAnual"
+                                  aria-describedby="basic-addon1" ng-disabled="factoresInteres != 'efecAnual'">
                             </div>
                             <div class="col-ms-12 col-md-3">
                                 {{efectivoAnualHomologo | porcentaje }}
@@ -276,11 +276,11 @@
                         </div>
                         <div class="row">
                             <div class="col-ms-4 col-md-4">
-                                <h3 style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Nominal Anual:</h3>
+                                <p style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Nominal Anual:</p>
                             </div>
                             <div class="col-ms-12 col-md-5">
-                                <input style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}" type="number" class="form-control" placeholder="%" aria-label="Username" ng-change="$gui.calculoNominalAnual()" ng-model="nominalAnual" aria-describedby="basic-addon1"
-                                  ng-disabled="factoresInteres != 'nominAnual'">
+                                <input style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}" type="number" class="form-control" placeholder="%" aria-label="Username" ng-change="$gui.calculoNominalAnual()" ng-model="nominalAnual"
+                                  aria-describedby="basic-addon1" ng-disabled="factoresInteres != 'nominAnual'">
                             </div>
                             <div class="col-ms-12 col-md-3">
                                 {{nominalAnualHomologo | porcentaje }}
@@ -288,116 +288,105 @@
                         </div>
                         <div class="row">
                             <div class="col-ms-4 col-md-4">
-                                <h3 style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Periodica:</h3>
+                                <p style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Periodica:</p>
                             </div>
                             <div class="col-ms-12 col-md-5">
-                                <input style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}   " type="number" class="form-control" placeholder="%" ng-model="periodica" aria-label="Username" aria-describedby="basic-addon1"
+                                <input style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}   " type="number" class="form-control" placeholder="%" ng-model="periodica" ng-change="$gui.calculoPeriodico()" aria-label="Username" aria-describedby="basic-addon1"
                                   ng-disabled="factoresInteres != 'periodica'">
                             </div>
                             <div class="col-ms-12 col-md-3">
                                 {{periodicaHomologo | porcentaje }}
                             </div>
                         </div>
+                        <center>
+                            <md-button ng-disabled="true" class="md-raised md-primary">Calcular</md-button>
+                        </center>
                     </form>
                 </div>
 
 
                 <div class="col-sm-7 offset-sm-5 px-0">
-                    <center>
-                        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                            <md-button ng-disabled="true" class="md-raised md-primary">Calcular</md-button>
-                        </section>
-                    </center>
-
-                    <!--Why This Domain-->
-                    <!-- <section class="pt-4">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-sm-8 mx-auto text-center">
-                                    <h2 class="text-primary pb-3">Cuadro de Amortización Cuota Fija</h2>
-                                </div>
+                    <div class="row">
+                        <div class="col-sm-8 bg-light text-center col-fixed" style="padding: 50px 20px 20px 20px; overflow:no;">
+                            <div class="col-md-12 col-sm-12  text-center">
+                                <h3>Cuadro de Amortización Cuota Fija</h3>
                             </div>
-                            <div class="row d-md-flex mt-4">
-                                <div class="limiter">
-                                    <div class="container-table100">
-                                        <div class="wrap-table100">
-                                            <div class="table100 ver1">
-                                                <div class="table100-firstcol">
-                                                    <table>
-                                                        <thead>
-                                                            <tr class="row100 head">
-                                                                <th class="cell100 column1"># Cuota</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="row100 body">
-                                                                <td class="cell100 column1">Brandon Green</td>
-                                                            </tr>
+                            <!--Why This Domain-->
+                            <section class="pt-4" style="padding: 50px 20px 20px 20px; overflow:scroll;">
+                                <div class="container-fluid">
 
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-
-                                                <div class="wrap-table100-nextcols js-pscroll">
-                                                    <div class="table100-nextcols">
-                                                        <table>
-                                                            <thead>
-                                                                <tr class="row100 head">
-                                                                    <th class="cell100 column2">Fecha</th>
-                                                                    <th class="cell100 column3">Saldo de Capital</th>
-                                                                    <th class="cell100 column4">Amortización a Capital</th>
-                                                                    <th class="cell100 column5">Amortización a Interes</th>
-                                                                    <th class="cell100 column6">Cuota Fija</th>
-                                                                    <th class="cell100 column7">Flujo de Caja</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr class="row100 body">
-                                                                    <td class="cell100 column2">CMO</td>
-                                                                    <td class="cell100 column3">16 Nov 2012</td>
-                                                                    <td class="cell100 column4">16 Nov 2017</td>
-                                                                    <td class="cell100 column5">brandon94@example.com</td>
-                                                                    <td class="cell100 column6">30</td>
-                                                                    <td class="cell100 column7">New York City, NY</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                    <div class="row d-md-flex mt-4">
+                                        <div class="row">
+                                            <div class="limiter" style="background:-webkit-linear-gradient(bottom, #151945,#E6E8E9)">
+                                                <div class="wrap-table100">
+                                                    <div class="table100 ver1">
+                                                        <div class="table100-firstcol">
+                                                            <table>
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th># Cuota</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="row100 body">
+                                                                        <td class="cell100 column1">1</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="wrap-table100-nextcols js-pscroll">
+                                                            <div class="table100-nextcols">
+                                                                <table>
+                                                                    <thead>
+                                                                        <tr class="row100 head">
+                                                                            <th class="cell100 column2">Fecha</th>
+                                                                            <th class="cell100 column3">Saldo de Capital</th>
+                                                                            <th class="cell100 column4">Amortización a Capital</th>
+                                                                            <th class="cell100 column5">Amortización a Interes</th>
+                                                                            <th class="cell100 column6">Cuota Fija</th>
+                                                                            <th class="cell100 column7">Flujo de Caja</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr class="row100 body">
+                                                                            <td class="cell100 column2">14 Nov 2018</td>
+                                                                            <td class="cell100 column3">14 Nov 2018</td>
+                                                                            <td class="cell100 column4">14 Nov 2018</td>
+                                                                            <td class="cell100 column5">00000000000</td>
+                                                                            <td class="cell100 column6">00000000000</td>
+                                                                            <td class="cell100 column7">00000000000</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </section>
+                            <div class="col-sm-12">
+                                <p class="text-muted text-center">
+                                    &copy; 2018 LBSInteractive by
+                                    <a href="#">Jefersson Ramos & Brayan Murillo &nbsp;</a><i class="fa fa-spinner fa-spin"></i>
+                                </p>
                             </div>
                         </div>
-                    </section> -->
-
-                    <!--footer-->
-                    <section class="mt-2">
-                        <div class="container">
-                            <div class="row mr-5 ml-5">
-                                <div class="col-sm-12">
-                                    <p class="text-muted text-center">
-                                        &copy; 2018 LBSInteractive by
-                                        <a href="#">Jefersson Ramos & Brayan Murillo &nbsp;</a><i class="fa fa-spinner fa-spin"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
+                <section>
 
 
-    <script src="../../../../../node_modules/angular-animate/angular-animate.min.js"></script>
-    <script src="../../../../../node_modules/angular-aria/angular-aria.min.js"></script>
-    <script src="../../../../../node_modules/angular-messages/angular-messages.min.js"></script>
-    <script src="../../../../../node_modules/angular-material/angular-material.min.js"></script>
-    <script src="../../../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../../js/simuladorCreditosController/jquery.countdown.min.js"></script>
-    <script type="text/javascript" src="../../../js/simuladorCreditosController/scripts.js"></script>
+
+                    <script src="../../../../../node_modules/angular-animate/angular-animate.min.js"></script>
+                    <script src="../../../../../node_modules/angular-aria/angular-aria.min.js"></script>
+                    <script src="../../../../../node_modules/angular-messages/angular-messages.min.js"></script>
+                    <script src="../../../../../node_modules/angular-material/angular-material.min.js"></script>
+                    <script src="../../../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+                    <script type="text/javascript" src="../../../js/simuladorCreditosController/jquery.countdown.min.js"></script>
+                    <script type="text/javascript" src="../../../js/simuladorCreditosController/scripts.js"></script>
 
 </body>
 

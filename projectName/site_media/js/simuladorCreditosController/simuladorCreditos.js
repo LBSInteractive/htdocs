@@ -118,11 +118,12 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
             $scope.variable = "Nuevo Valor pantalla";
         },
         efectivoAnualIngresado: function() {
-            $scope.efectivoAnualHomologo = $scope.efectivoAnual;
+            $scope.efectivoAnualHomologo = Number($scope.efectivoAnual);
             $scope.nominalAnual = 0;
             $scope.nominalAnualHomologo = 0;
             $scope.periodica = 0;
             $scope.periodicaHomologo = 0;
+
             $scope.periodica = Math.pow( (1 +  (Number($scope.efectivoAnual)/100) ) , (90/360) ) - 1; // 90 cambiar por dias
             $scope.periodicaHomologo = ((Math.pow( (1 +  (Number($scope.efectivoAnual)/100) ) , (90/360) ) - 1)*100).toFixed(2); // 90 cambiar por dias
             $scope.nominalAnual = Number($scope.periodica*4); //4 cambiar por ciclo dias
@@ -135,15 +136,23 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
             $scope.periodica = 0;
             $scope.periodicaHomologo = 0;
 
-            $scope.periodica = Number($scope.nominalAnual) / 4; // 4 cambiar por ciclo dias
-            $scope.periodicaHomologo = (Number($scope.nominalAnual) / 4).toFixed(2); // 90 cambiar por dias
-            $scope.nominalAnual = Number($scope.periodica*4); //4 cambiar por ciclo dias
-            $scope.nominalAnualHomologo = (Number($scope.periodica*4)*100).toFixed(2); // 4 cambiar por ciclo dias
+            $scope.periodica = (Number($scope.nominalAnual)/100) / 4; // 4 cambiar por ciclo dias
+            $scope.periodicaHomologo = (((Number($scope.nominalAnual)/100) / 4) * 100).toFixed(2); // 90 cambiar por dias
+            $scope.efectivoAnual = Math.pow( 1 + Number($scope.periodica)/100, (360/90) ) -1;
+            $scope.efectivoAnualHomologo = ((Math.pow( 1 + Number($scope.periodica) , (360/90) ) -1)*100).toFixed(2);
         },
         calculoPeriodico: function() {
-            //EA = ((1 + ip) ^ (360/dias)) -1
-            $scope.ea = ((1 + Number($scope.periodica)) ^ (360 / Number($scope.dias)) - 1);
+            $scope.periodicaHomologo = $scope.periodica;
+            $scope.efectivoAnual = 0;
+            $scope.efectivoAnualHomologo = 0;
+            $scope.nominalAnual = 0;
+            $scope.nominalAnualHomologo = 0;
 
+
+            $scope.nominalAnual = (Number($scope.periodica)/100) * 4;
+            $scope.nominalAnualHomologo = (((Number($scope.periodica)/100) * 4)*100).toFixed(2);
+            $scope.efectivoAnual = Math.pow( 1 + (Number($scope.periodica)/100), (360/90) ) -1;
+            $scope.efectivoAnualHomologo = ((Math.pow( 1 + (Number($scope.periodica)/100), (360/90) ) -1)*100).toFixed(2);
         },
         calcular: function() {
             var periodoAmortizacion = 0;
