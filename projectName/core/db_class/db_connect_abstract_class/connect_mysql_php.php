@@ -36,7 +36,7 @@ abstract class Conectar
      * Permite apuntar a una base de datos
      * @var String
      */
-    protected $db_name = 'grow_more_seed_db';
+    protected static $db_name = 'grow_more_seed_db';
 
 
 
@@ -60,20 +60,20 @@ abstract class Conectar
      * Abrir una nueva CONEXION
      * @return none
      */
-    private function open_connection()
+    private static function open_connection()
     {
 
         /**
-         * $this->conn Crea el enlace con los parametros del servidor DB (host,user,pass,nameDB)
+         * self::$conn Crea el enlace con los parametros del servidor DB (host,user,pass,nameDB)
          * @var mysqli
          */
-        $this->conn = new mysqli(self::$db_host, self::$db_user, self::$db_pass, $this->db_name);
+        self:$conn = new mysqli(self::$db_host, self::$db_user, self::$db_pass, self::$db_name);
 
         /**
-         * $this->conn->set_charset decodificamos en utf8
+         * self::$conn->set_charset decodificamos en utf8
          * @var String
          */
-        $this->conn->set_charset("utf8");
+        self::$conn->set_charset("utf8");
     }
 
 
@@ -84,10 +84,10 @@ abstract class Conectar
     private function close_connection()
     {
         /**
-         * $this->conn->close Cierra el enlace
+         * self::$conn->close Cierra el enlace
          * @var close()
          */
-        $this->conn->close();
+        self::$conn->close();
     }
 
 
@@ -103,18 +103,18 @@ abstract class Conectar
 
     /**
      * execute_single_query  Ejecutar un query Simple del Tipo INSERT, DELETE, UPDATE
-     * @param  String $query 'SELECT * FROM XXXX;'
+     * @param  String $query 'INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);'
      * @return none
      */
-    protected function execute_single_query($query)
+    protected static function execute_single_query($query)
     {
         $this->open_connection();
 
         /**
-         * $this->conn->query Ejecuta un query por meedio del enlace
+         * self::$conn->query Ejecuta un query por meedio del enlace
          * @var String $query
          */
-        $this->conn->query($query);
+        self::$conn->query($query);
 
         $this->close_connection();
     }
@@ -125,10 +125,10 @@ abstract class Conectar
      * @param  String $query 'SELECT * FROM XXXX;'
      * @return mysqli_query Resultado de consulta CRUDO, REQUIERE UN TIPO FETCH, EJEMPLO FETCH_ALL
      */
-    protected function get_results_from_query($query)
+    protected static function get_results_from_query($query)
     {
         $this->open_connection();
-        $result_query = $this->conn->query($query);
+        $result_query = self::$conn->query($query);
         $this->close_connection();
         return $result_query;
     }
@@ -140,10 +140,10 @@ abstract class Conectar
      * @param  String $tipoArrayRetorno (asociativo,numerico,ambos)
      * @return Array[]   Array asociativo, numerico o ambos.
      */
-    protected function get_results_from_query_all($query, $tipoArrayRetorno)
+    protected static function get_results_from_query_all($query, $tipoArrayRetorno)
     {
         $this->open_connection();
-        $parcialResult_query = $this->conn->query($query);
+        $parcialResult_query = self::$conn->query($query);
         $this->close_connection();
         if (strcasecmp("asociativo", $tipoArrayRetorno) == 0) {
             /**
@@ -177,10 +177,10 @@ abstract class Conectar
      * @param  String $tipoArrayRetorno (asociativo,numerico,ambos)
      * @return Array[]   Array asociativo, numerico o ambos.
      */
-    protected function get_results_from_query_array($query, $tipoArrayRetorno)
+    protected static function get_results_from_query_array($query, $tipoArrayRetorno)
     {
         $this->open_connection();
-        $parcialResult_query = $this->conn->query($query);
+        $parcialResult_query = self::$conn->query($query);
         $this->close_connection();
         if (strcasecmp("asociativo", $tipoArrayRetorno) == 0) {
             /**
@@ -213,10 +213,10 @@ abstract class Conectar
      * @param  String $query 'SELECT * FROM XXXX;'
      * @return Array[]  Retorna Array Asociativo ("llave" => "valor")
      */
-    protected function get_results_from_query_assoc($query)
+    protected static function get_results_from_query_assoc($query)
     {
         $this->open_connection();
-        $parcialResult_query = $this->conn->query($query);
+        $parcialResult_query = self::$conn->query($query);
         $this->close_connection();
 
         /**
@@ -234,10 +234,10 @@ abstract class Conectar
      * @param  String $query 'SELECT * FROM XXXX;'
      * @return Array[]  Retorna array numerico (0 => "valor")
      */
-    protected function get_results_from_query_row($query)
+    protected static function get_results_from_query_row($query)
     {
         $this->open_connection();
-        $parcialResult_query = $this->conn->query($query);
+        $parcialResult_query = self::$conn->query($query);
         $this->close_connection();
 
         /**
@@ -255,10 +255,10 @@ abstract class Conectar
      * @param  String $query 'SELECT * FROM XXXX;'
      * @return Array[]  Retorna array numerico (0 => "valor")
      */
-    protected function get_num_from_row_query($query)
+    protected static function get_num_from_row_query($query)
     {
         $this->open_connection();
-        $parcialResult_query = $this->conn->query($query);
+        $parcialResult_query = self::$conn->query($query);
         $this->close_connection();
 
         /**

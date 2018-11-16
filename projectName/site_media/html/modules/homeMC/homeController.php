@@ -30,6 +30,7 @@
       $obj_view = create_obj_view();
       $obj_model = create_obj_model();
 
+      echo json_encode($obj_model->obtener_lista_usuarios());
       /**
        * Renderizar Vista (dir,nombreArchivoHTML)
        */
