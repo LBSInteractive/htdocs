@@ -53,4 +53,12 @@ md-slider-container md-input-container input[type=number] {
      padding-left: 0px !important;
 }
 
+table tr:nth-child(even) {
+    background-color: #eee !important;
+}
+
+table tr:nth-child(odd) {
+    background-color: #fff !important;
+}
+
 /*-------------------------------- CSS -----------------------------*/

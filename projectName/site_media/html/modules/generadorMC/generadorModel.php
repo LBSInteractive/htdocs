@@ -26,7 +26,7 @@ class Model extends Conectar
          * $this->db_name Cambiar Apuntador de Base de Datos
          * @var String
          */
-        $this->db_name = 'u948420309_esbdc';
+        parent::$db_name = 'u948420309_esbdc';
     }
 
 
@@ -37,7 +37,7 @@ class Model extends Conectar
     public function obtener_lista_usuarios()
     {
         $query = 'SELECT * FROM usuarios';
-        $data = $this->get_results_from_query_assoc($query);
+        $data = parent::get_results_from_query_assoc($query);
         return $data;
     }
 
