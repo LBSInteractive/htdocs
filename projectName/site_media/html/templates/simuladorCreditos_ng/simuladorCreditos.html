@@ -192,7 +192,7 @@
                                 <md-radio-group ng-model="periodo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
-                                            <md-radio-button type="radio" ng-value="{'periodoDias': 30 ,'periodoAnual': 12}">Mensual</md-radio-button>
+                                            <md-radio-button type="radio" value="30,12">Mensual</md-radio-button>
                                         </fieldset>
                                     </div>
                                 </md-radio-group>
@@ -201,7 +201,7 @@
                                 <md-radio-group ng-model="periodo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
-                                            <md-radio-button type="radio" ng-value="{'periodoDias': 60 ,'periodoAnual': 6}" ng-if="tipoPrestamo == 'periodoGracia'">Bimestral</md-radio-button>
+                                            <md-radio-button type="radio" value="60,6" ng-if="tipoPrestamo == 'periodoGracia'">Bimestral</md-radio-button>
                                         </fieldset>
                                     </div>
                                 </md-radio-group>
@@ -210,7 +210,7 @@
                                 <md-radio-group ng-model="periodo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
-                                            <md-radio-button type="radio" ng-value="{'periodoDias': 90 ,'periodoAnual': 4}">Trimestral</md-radio-button>
+                                            <md-radio-button type="radio" value="90,4">Trimestral</md-radio-button>
                                         </fieldset>
                                     </div>
                                 </md-radio-group>

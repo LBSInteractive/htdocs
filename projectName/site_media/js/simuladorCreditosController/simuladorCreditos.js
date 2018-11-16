@@ -26,84 +26,12 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
     $scope.efectivoAnual;
     $scope.nominalAnual;
     $scope.periodica;
-    //**************************************************************************************
-    //*************************( Contenido del controller global)***************************
-    //Variable Global rootScope
-    $rootScope.variable = "variable global"
-    //**************************************************************************************
-    /*--------------------------    Area de Declaracion     ------------------------------*/
-
-
-
+    $scope.tabla = [];
 
 
     /*--------------------------            $apis           ------------------------------*/
     //*************************(  Consulta a Base de Datos )********************************
-    $scope.$api = {
-        /**
-         * Para hacer un request por POST
-         * @return JSON en Consola
-         */
-        consultaPost: function() {
-            /**
-             * dataService Realiza la peticion POST data (Para enviar parametros por POST )
-             * @type $http
-             */
-            var dataService = $http({
-                method: 'POST',
-                url: 'http://localhost/projectName/site_media/html/modules/servicioMC/servicioController.php',
-                data: {
-                    nombre: 'ejemplo'
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            /**
-             * Control de respuesta
-             * @param  $http response Peticion
-             * @return none
-             */
-            dataService.then(function(response) {
-                console.log(response.data);
-            }, function(response) {
-                console.log("Error");
-            });
-
-        },
-        /**
-         * Para hacer un request por GET
-         * @return JSON en Consola
-         */
-        consultaGet: function() {
-            /**
-             * dataService Realiza la peticion GET params (Para enviar parametros por GET ?String=String )
-             * @type $http
-             */
-            var dataService = $http({
-                method: 'GET',
-                url: 'http://localhost/projectName/site_media/html/modules/servicioMC/servicioController.php',
-                params: {
-                    nombre: 'ejemplo'
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            /**
-             * Control de respuesta
-             * @param  $http response Peticion
-             * @return none
-             */
-            dataService.then(function(response) {
-                console.log(response.data);
-            }, function(response) {
-                console.log("Error");
-            });
-        }
-    };
+    $scope.$api = {};
     //**************************************************************************************
     /*--------------------------            $apis           ------------------------------*/
 
@@ -124,10 +52,10 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
             $scope.periodica = 0;
             $scope.periodicaHomologo = 0;
 
-            $scope.periodica = Math.pow((1 + (Number($scope.efectivoAnual) / 100)), ($scope.periodo.periodoDias / 360)) - 1;
-            $scope.periodicaHomologo = ((Math.pow((1 + (Number($scope.efectivoAnual) / 100)), ($scope.periodo.periodoDias / 360)) - 1) * 100).toFixed(2);
-            $scope.nominalAnual = Number($scope.periodica * $scope.periodo.periodoAnual); //4 cambiar por ciclo dias
-            $scope.nominalAnualHomologo = (Number($scope.periodica * $scope.periodo.periodoAnual) * 100).toFixed(2); // 4 cambiar por ciclo dias
+            $scope.periodica = Math.pow((1 + (Number($scope.efectivoAnual) / 100)), (Number($scope.periodo.split(",")[0]) / 360)) - 1;
+            $scope.periodicaHomologo = ((Math.pow((1 + (Number($scope.efectivoAnual) / 100)), (Number($scope.periodo.split(",")[0]) / 360)) - 1) * 100).toFixed(2);
+            $scope.nominalAnual = Number($scope.periodica * Number($scope.periodo.split(",")[1])); //4 cambiar por ciclo dia Number($scope.periodo.split(",")[0])
+            $scope.nominalAnualHomologo = (Number($scope.periodica * Number($scope.periodo.split(",")[1])) * 100).toFixed(2); // 4 cambiar por ciclo dias
         },
         calculoNominalAnual: function() {
             $scope.nominalAnualHomologo = $scope.nominalAnual;
@@ -136,10 +64,10 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
             $scope.periodica = 0;
             $scope.periodicaHomologo = 0;
 
-            $scope.periodica = (Number($scope.nominalAnual) / 100) / $scope.periodo.periodoAnual; // 4 cambiar por ciclo dias
-            $scope.periodicaHomologo = (((Number($scope.nominalAnual) / 100) / $scope.periodo.periodoAnual) * 100).toFixed(2);
-            $scope.efectivoAnual = Math.pow(1 + Number($scope.periodica) / 100, (360 / $scope.periodo.periodoDias)) - 1;
-            $scope.efectivoAnualHomologo = ((Math.pow(1 + Number($scope.periodica), (360 / $scope.periodo.periodoDias)) - 1) * 100).toFixed(2);
+            $scope.periodica = (Number($scope.nominalAnual) / 100) / Number($scope.periodo.split(",")[1]); // 4 cambiar por ciclo dias
+            $scope.periodicaHomologo = (((Number($scope.nominalAnual) / 100) / Number($scope.periodo.split(",")[1])) * 100).toFixed(2);
+            $scope.efectivoAnual = Math.pow(1 + Number($scope.periodica) / 100, (360 / Number($scope.periodo.split(",")[0]))) - 1;
+            $scope.efectivoAnualHomologo = ((Math.pow(1 + Number($scope.periodica), (360 / Number($scope.periodo.split(",")[0]))) - 1) * 100).toFixed(2);
         },
         calculoPeriodico: function() {
             $scope.periodicaHomologo = $scope.periodica;
@@ -149,10 +77,10 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
             $scope.nominalAnualHomologo = 0;
 
 
-            $scope.nominalAnual = (Number($scope.periodica) / 100) * $scope.periodo.periodoAnual;
-            $scope.nominalAnualHomologo = (((Number($scope.periodica) / 100) * $scope.periodo.periodoAnual) * 100).toFixed(2);
-            $scope.efectivoAnual = Math.pow(1 + (Number($scope.periodica) / 100), (360 / $scope.periodo.periodoDias)) - 1;
-            $scope.efectivoAnualHomologo = ((Math.pow(1 + (Number($scope.periodica) / 100), (360 / $scope.periodo.periodoDias)) - 1) * 100).toFixed(2);
+            $scope.nominalAnual = (Number($scope.periodica) / 100) * Number($scope.periodo.split(",")[1]);
+            $scope.nominalAnualHomologo = (((Number($scope.periodica) / 100) * Number($scope.periodo.split(",")[1])) * 100).toFixed(2);
+            $scope.efectivoAnual = Math.pow(1 + (Number($scope.periodica) / 100), (360 / Number($scope.periodo.split(",")[0]))) - 1;
+            $scope.efectivoAnualHomologo = ((Math.pow(1 + (Number($scope.periodica) / 100), (360 / Number($scope.periodo.split(",")[0]))) - 1) * 100).toFixed(2);
         },
         calcular: function() {
             var periodoAmortizacion = 0;
@@ -221,24 +149,50 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
                         text: 'Resumen de Cuadro de Amortización Cuota Fija',
                         style: 'header'
                     },
-                    'Detalle del resumen', {
-                        text: 'Nombre',
+                    'En el siguiente documento se entrega al cliente ' + $scope.nombre + ' con el objetivo de mantener la información negociada el mes ' + (new Date().getMonth() + 1) + ' del año ' + new Date().getFullYear(), {
+                        text: 'Nombre:',
                         style: 'subheader'
                     },
                     $scope.nombre, {
-                        text: 'ID',
+                        text: 'ID:',
                         style: 'subheader'
                     },
                     $scope.identificacion, {
-                        text: 'Valor Prestamo',
+                        text: 'Valor Prestamo:',
                         style: 'subheader'
                     },
                     $filter('currency')($scope.prestamo), {
+                        text: 'Tipo Préstamo:',
+                        style: 'subheader'
+                    },
+                    $scope.tipoPrestamo == 'cuotaFija' ? 'Cuota fija' : 'Período de gracia', {
+                        text: 'Plazo en Años/Meses:',
+                        style: 'subheader'
+                    },
+                    $scope.total, {
+                        text: 'Periodo de amortización:',
+                        style: 'subheader'
+                    },
+                    $scope.periodo.split(",")[0] == '30' ? 'Mensual' : ($scope.periodo.split(",")[0] == '60' ? 'Bimestral' : 'Trimestral'), {
+                        text: 'Tasas de Interes:',
+                        style: 'subheader'
+                    },{
                         style: 'tableExample',
                         table: {
                             body: [
-                                ['# Cuota', 'Fecha', 'Saldo de Capital','AMORTIZACIÓN A CAPITAL','AMORTIZACIÓN A INTERES','CUOTA FIJA','FLUJO DE CAJA'],
-                                ['1', '14 Nov 201', '00000','00000','00000','000000','000000']
+                                ['Efectiva Anual', 'Nominal Anual', 'Periodica'],
+                                [$filter('porcentaje')($scope.efectivoAnualHomologo), $filter('porcentaje')($scope.nominalAnualHomologo), $filter('porcentaje')($scope.periodicaHomologo)]
+                            ]
+                        }
+                    },{
+                        text: 'Cuadro de Amortización:',
+                        style: 'subheader'
+                    },{
+                        style: 'tableExample',
+                        table: {
+                            body: [
+                                ['# Cuota', 'Fecha', 'Saldo de Capital', 'AMORTIZACIÓN A CAPITAL', 'AMORTIZACIÓN A INTERES', 'CUOTA FIJA', 'FLUJO DE CAJA'],
+                                ['1', '14 Nov 201', '00000', '00000', '00000', '000000', '000000']
                             ]
                         }
                     }
@@ -269,8 +223,8 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
                 }
             };
 
-            pdfMake.createPdf(docDefinition).download('PDF.pdf');
-            // pdfMake.createPdf(docDefinition).open();
+            //pdfMake.createPdf(docDefinition).download('PDF.pdf');
+            pdfMake.createPdf(docDefinition).open();
 
         }
     };
