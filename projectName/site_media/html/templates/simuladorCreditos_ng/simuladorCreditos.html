@@ -109,7 +109,7 @@
                                 <md-radio-group ng-model="tipoPrestamo" required name="tipoPrestamo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
-                                            <md-radio-button type="radio" value="cuotaFija">Cuota fija</md-radio-button>
+                                            <md-radio-button type="radio" value="cuotaFija">Cuota Fija</md-radio-button>
                                         </fieldset>
                                     </div>
                                 </md-radio-group>
@@ -118,7 +118,7 @@
                                 <md-radio-group ng-model="tipoPrestamo" required name="tipoPrestamo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
-                                            <md-radio-button type="radio" value="periodoGracia">Período de gracia</md-radio-button>
+                                            <md-radio-button type="radio" value="periodoGracia">Período de Gracia</md-radio-button>
                                         </fieldset>
                                     </div>
                                 </md-radio-group>
@@ -261,7 +261,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                                <md-button ng-click="$gui.calcular()"
+                                <md-button ng-disabled="$complexSystem.RegExpNombre() == false || myForm.identificacion.$valid == false || myForm.prestamo.$valid == false || myForm.tipoPrestamo.$valid == false || myForm.sliderAnios.$valid == false || myForm.periodo.$valid == false || myForm.tasa.$valid == false || (periodicaHomologo == 0 || periodicaHomologo == null) || (nominalAnualHomologo == 0 || nominalAnualHomologo == null) || (efectivoAnualHomologo == 0 || efectivoAnualHomologo == null)" ng-click="$gui.calcular()"
                                   class="md-raised md-primary">Calcular</md-button>
                                   <!-- agregar disabled -->
                             </div>
@@ -273,7 +273,7 @@
 
                 <div class="col-sm-7 offset-sm-5 px-0">
                     <div class="row">
-                        <div class="col-sm-8 bg-light text-center col-fixed" style="padding: 50px 20px 20px 20px; overflow:no;">
+                        <div class="col-sm-8 bg-light text-center col-fixed" style="padding: 50px 20px 20px 20px; overflow-y:scroll;">
                             <div class="col-md-12 col-sm-12  text-center">
                                 <center>
                                     <md-button ng-click="$complexSystem.downloadPDF()" ng-disabled="$complexSystem.RegExpNombre() == false || myForm.identificacion.$valid == false || myForm.prestamo.$valid == false || myForm.tipoPrestamo.$valid == false || myForm.sliderAnios.$valid == false || myForm.periodo.$valid == false || myForm.tasa.$valid == false || (periodicaHomologo == 0 || periodicaHomologo == null) || (nominalAnualHomologo == 0 || nominalAnualHomologo == null) || (efectivoAnualHomologo == 0 || efectivoAnualHomologo == null)"

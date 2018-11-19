@@ -1,0 +1,48 @@
+/*-------------------------------- CSS -----------------------------*/
+
+/********************************************************************/
+
+/* Estilo tipo ID */
+#myStyle{
+
+	font-color: black;
+
+}
+
+/* Estilo tipo CLASS */
+.myStyle{
+
+	font-color: black;
+
+}
+
+
+
+/* Fondo de ejemplo y aplicacion a etiqueta */
+body {
+
+        /* background-image: url(../../site_media/img/imagenes/home.jpg); */
+
+        background-position: center center;
+
+        background-repeat: no-repeat;
+
+        background-attachment: fixed;
+
+        background-size: cover;
+
+        background-color: #66999;
+
+}
+
+
+
+
+/* Etiqueta personalizada */
+miEtiqueta {
+
+		font-color: black;
+
+}
+
+/*-------------------------------- CSS -----------------------------*/

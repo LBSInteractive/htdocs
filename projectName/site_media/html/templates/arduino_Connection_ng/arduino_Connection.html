@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="arduino_Connection">
+
+<head>
+
+    <!-- Cargar Favicon y Titulo -->
+    <meta charset="utf-8">
+    <title>Arduino - La Unión</title>
+    <link rel="shortcut icon" type="image/png" href="../../../img/favicon/arduino.png" />
+
+    <!-- Carga Metas -->
+    <script src="../../../../site_media/js/general/general_Meta.js"></script>
+
+
+
+    <script src="../../../../../node_modules/angular/angular.min.js"></script>
+
+
+
+    <script src="../../../../../node_modules/jquery/dist/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../../node_modules/@fortawesome/fontawesome-free/css/all.css" />
+    <script src="../../../../../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="../../../../../node_modules/angular-material/angular-material.min.css">
+
+
+    <link rel="stylesheet" href="../../../../site_media/css/arduino_Connection_ng/arduino_Connection.css">
+    <script type="text/javascript" src="../../../js/arduino_ConnectionController/arduino_Connection.js"></script>
+
+</head>
+
+<body ng-controller="arduino_Connection_Controller">
+
+    <section class="hero bg-indigo">
+        <div class="container">
+            <div class="row">
+                <div class="card border-none col-lg-6 col-md-8 col-sm-10 mx-auto bg-texture">
+                    <div class="card-body text-white text-center py-4">
+                        <div class="mb-3">
+                            <img src="/projectName/frameworks/card/img/dinner.png" class="brand-logo img-fluid rounded-circle" />
+                        </div>
+                        <p class="mt-2">
+                            <a href="https://github.com/LBSInteractive/htdocs" target="_blank"><em class="ion-social-github text-github-alt icon-sm mr-3"></em></a>
+                        </p>
+                        {{data}}
+                         <p>Port: <select ng-model="p" ng_options="port.comName for port in ports"></select> <button ng-click="doConnect()">Connect</button> <button ng-click="doDisconnect()">Disconnect</button></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="../../../../../node_modules/socket.io/lib/socket.js"></script>
+    <script src="../../../../../node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="../../../../../node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="../../../../../node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="../../../../../node_modules/angular-material/angular-material.min.js"></script>
+    <script src="../../../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

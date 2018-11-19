@@ -12,9 +12,14 @@ var app = angular.module("simuladorCreditos", ['ngMaterial', 'ngSanitize']);
 
 /*------------------------------- Area Modulo Controller --------------------------------*/
 //.controller ('Nombre Controller', directiva en function($scope)) Inyectables
-app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootScope, $http, $filter) {
-
-
+app.controller('simuladorCreditos_Controller', [
+    '$location',
+    '$scope',
+    '$timeout',
+    '$rootScope',
+    '$http',
+    '$filter',
+     function( $location, $scope, $timeout, $rootScope, $http, $filter) {
     /*--------------------------    Area de Declaracion     ------------------------------*/
     //*************************(  Contenido del controller )********************************
     $scope.periodoAmortizacion = 0;
@@ -102,6 +107,7 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
                 $scope.tabla = [];
                 numeroCuotas = (Number($scope.anios) - 3) * Number($scope.periodo.split(",")[1]);
                 aniosSobrantes = 3 * Number($scope.periodo.split(",")[1]);
+                saltosAnios = ( Number($scope.periodo.split(",")[1]) == 12 ? 1 : ( Number($scope.periodo.split(",")[1]) == 6 ? 2 : 3 ) );
                 $scope.tabla.push({
                     numeroCuota: cuotaIndex,
                     numeroCuotaHomologo: cuotaIndex,
@@ -113,24 +119,35 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
                     amortizacionCapitalHomologo: '$0.00',
                     amortizacionInteres: '$0.00',
                     amortizacionInteresHomologo: '$0.00',
-                    cuotaFija: Number($scope.prestamo),
-                    cuotaFijaHomologo: $filter('currency')($scope.prestamo),
+                    cuotaFija: '$0.00',
+                    cuotaFijaHomologo: '$0.00',
                     flujoCaja: Number($scope.prestamo),
                     flujoCajaHomologo: $filter('currency')($scope.prestamo)
                 });
-                // for (var i = 0; i < aniosSobrantes; i++) {
-                //     $scope.tabla.push({
-                //         numeroCuota: cuotaIndex,
-                //         fecha: fechaHoy,
-                //         saldoCapital: $scope.prestamo,
-                //         saldoCapitalHomologo: $filter('currency')($scope.prestamo),
-                //         amortizacionCapital: '$0.00',
-                //         amortizacionCapitalHomologo: '$0.00',
-                //         amortizacionInteres: '$0.00',
-                //         amortizacionInteresHomologo: '$0.00',
-                //         cuotaFija: ''
-                //     });
-                // }
+                cuotaIndex++;
+                fechaHoy = new Date(fechaHoy.setMonth(fechaHoy.getMonth() + saltosAnios));
+                saldoCapital = Number($scope.prestamo);
+                for (var i = 0; i < aniosSobrantes; i++) {
+                    $scope.tabla.push({
+                        numeroCuota: cuotaIndex,
+                        numeroCuotaHomologo: "(" + cuotaIndex + ") Período de Gracia",
+                        fecha: fechaHoy,
+                        fechaHomologo: $filter('date')(fechaHoy, 'dd/MM/yyyy'),
+                        saldoCapital: saldoCapital + $scope.$gui.formulaInteres(saldoCapital,$scope.periodica), // Calculando
+                        saldoCapitalHomologo: $filter('currency')(saldoCapital + $scope.$gui.formulaInteres(saldoCapital,$scope.periodica)),
+                        amortizacionCapital: '$0.00',
+                        amortizacionCapitalHomologo: '$0.00',
+                        amortizacionInteres: $scope.$gui.formulaInteres(saldoCapital,$scope.periodica), // Calculando
+                        amortizacionInteresHomologo: $filter('currency')($scope.$gui.formulaInteres(saldoCapital,$scope.periodica)),
+                        cuotaFija: '$0.00',
+                        cuotaFijaHomologo: '$0.00',
+                        flujoCaja: "+ " + $scope.$gui.formulaInteres(saldoCapital,$scope.periodica),
+                        flujoCajaHomologo: "+ " + $filter('currency')($scope.$gui.formulaInteres(saldoCapital,$scope.periodica))
+                    });
+                    cuotaIndex++;
+                    fechaHoy = new Date(fechaHoy.setMonth(fechaHoy.getMonth() + saltosAnios));
+                    saldoCapital = saldoCapital + $scope.$gui.formulaInteres(saldoCapital,$scope.periodica);
+                }
             } else if ($scope.tipoPrestamo == "cuotaFija") {
                 $scope.tabla = [];
                 for (var i = 1; i <= aniosSobrantes; i++) {
@@ -145,7 +162,7 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
             return P * ((Math.pow((1 + ip), n) * ip) / (Math.pow((1 + ip), n) - 1));
         },
         formulaInteres: function(saldo, ip) {
-            return saldo * ip;
+            return Number(saldo) * Number(ip);
         },
         resetTasa: function() {
             $scope.efectivoAnual = 0;
@@ -267,7 +284,7 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
                         style: 'tableExample',
                         table: {
 
-                            widths: ['*', 'auto'],
+                            widths: ['auto', 'auto','auto','auto','auto','auto','auto'],
                             body: $scope.rows
                         },
                         layout: {
@@ -358,8 +375,9 @@ app.controller('simuladorCreditos_Controller', function($scope, $timeout, $rootS
         $scope.includeMobileTemplate = true;
     }
     $scope.myHTML = $scope.includeMobileTemplate ? '<h3>Tipo Préstamo </h3><br>' : '<p>Tipo Préstamo:</p>';
-
-})
+    var esto = $location.search();
+    console.log(esto);
+}])
 /*---------------------------------------------Area Modulo Controller-----------------------------------------------*/
 //************************************************************************************************************************
 
@@ -382,6 +400,7 @@ app.filter('porcentaje', ['$filter', function($filter) {
         }
 
     };
+
 }]);
 
 /*--------------------------------------------Filters-----------------------------------------------*/
