@@ -1,2 +1,3 @@
 # Ignore Dependences Node
 /node_modules/
+/projectName/frameworks/arduino_serial_html/node_modules
