@@ -39,7 +39,7 @@
 
     <script type="text/javascript" src="../../../js/simuladorCreditosController/simuladorCreditos.js"></script>
     <script src='../../../../../node_modules/pdfmake/build/pdfmake.min.js'></script>
- 	<script src='../../../../../node_modules/pdfmake/build/vfs_fonts.js'></script>
+    <script src='../../../../../node_modules/pdfmake/build/vfs_fonts.js'></script>
 
 </head>
 
@@ -48,7 +48,7 @@
     <section class="bg-white hero p-0">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-5 bg-light text-center col-fixed" style="padding: 50px 20px 20px 20px; overflow-y:scroll;">
+                <div class="col-sm-5 bg-light text-center col-fixed" style="padding: 50px 20px 20px 20px; overflow-y:scroll; overflow-x:hidden;">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
@@ -57,7 +57,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <h3>Simulador de Créditos</h3>
                                 <p class="mt-4">
-                                    Fraccionamiento
+                                    {{tipoPrestamo == 'periodoGracia' ? 'Periodo de Gracia Muerto (3 años)' : 'Fraccionamiento Cuota Fija' }}
                                 </p>
                             </div>
 
@@ -70,8 +70,8 @@
                                 <p>Nombre:</p>
                             </div>
                             <div class="col-8">
-                                <input size="25px" data-placement="left" title="Ingresar Nombre y Apellidos" onmouseenter="$(this).tooltip('show')" type="text" ng-model="nombre" style="background-color: {{$complexSystem.RegExpNombre() ? '#B2DFDB' : 'white'}}"
-                                  ng-change="" class="form-control" placeholder="Nombre">
+                                <input size="25px" data-placement="top" title="Ingresar Nombre y Apellidos" onmouseenter="$(this).tooltip('show')" type="text" ng-model="nombre" style="background-color: {{ $complexSystem.RegExpNombre() ? '#B2DFDB' : 'rgba(255, 0, 94, 0.13)' }}"
+                                  class="form-control" placeholder="Nombre">
                             </div>
 
                         </div>
@@ -81,11 +81,11 @@
                                 <p>ID:</p>
                             </div>
                             <div class="col-4">
-                                <input size="25px" type="number" data-placement="left" title="Minimo 4 digitos" onmouseenter="$(this).tooltip('show')" name="identificacion" ng-init="identificacion = 0" required max="9999999999" min="9999" class="form-control"
-                                  placeholder="Indentificación" style="background-color: {{ myForm.identificacion.$valid ? '#B2DFDB' : 'white'}}" ng-model="identificacion">
+                                <input class="form-control" size="25px" type="number" style="background-color: {{ myForm.identificacion.$valid ? '#B2DFDB' : 'rgba(255, 0, 94, 0.13)' }}" placeholder="Indentificación" data-placement="top" title="Minimo 10 dígitos"
+                                  onmouseenter="$(this).tooltip('show')" name="identificacion" min="1000000000" max="999999999999999" ng-model="identificacion" ng-init="identificacion = 0000000000 " required>
                             </div>
                             <div class="col-5">
-                                <p>{{identificacion == false ? '00.000.000.000' : (identificacion | number)}}</p>
+                                <p>{{ identificacion ? (identificacion | number) :'0.000.000.000' }}</p>
                             </div>
                         </div>
                         <br>
@@ -94,34 +94,19 @@
                                 <p>Valor Prestamo:</p>
                             </div>
                             <div class="col-4">
-                                <input size="25px" data-placement="left" title="Minimo $500.000" onmouseenter="$(this).tooltip('show')" type="number" class="form-control" name="prestamo" ng-model="prestamo" max="999999999999" min="500000"
-                                  placeholder="$" aria-label="Username" style="background-color: {{ myForm.prestamo.$valid ? '#B2DFDB' : 'white'}}" aria-describedby="basic-addon1" step="0.01" required>
+                                <input size="25px" data-placement="top" title="Minimo $500.000" onmouseenter="$(this).tooltip('show')" type="number" class="form-control" name="prestamo" ng-model="prestamo" max="999999999999" min="500000" placeholder="$"
+                                  aria-label="prestamo" style="background-color: {{ myForm.prestamo.$valid ? '#B2DFDB' : 'rgba(255, 0, 94, 0.13)'}}" aria-describedby="basic-addon1" step="0.01" required>
                             </div>
                             <div class="col-5">
-                                <p>{{ prestamo ? (prestamo | currency) : '$0' }}</p>
+                                <p>{{ prestamo ? 'COL' + (prestamo | currency) : '$0' }}</p>
                             </div>
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-3">
-                                <p>Tipo Préstamo:</p>
+                            <div class="col-ms-12 col-md-3" ng-bind-html="myHTML">
                             </div>
-                            <!-- <div class="col-4">
-                                <fieldset class="standard">
-                                    <md-checkbox style="font-size:10px;padding-top: 2px;" type="checkbox" ng-model="selectTypeEnd.cuotaFija" ng-disabled="selectTypeEnd.periodoGracia == true" aria-label="Checkbox 1">
-                                        Cuota Fija
-                                    </md-checkbox>
-                                </fieldset>
-                            </div>
-                            <div class="col-5">
-                                <fieldset class="standard">
-                                    <md-checkbox style="font-size:10px;padding-top: 2px;" type="checkbox" ng-model="selectTypeEnd.periodoGracia" ng-disabled="selectTypeEnd.cuotaFija == true" aria-label="Checkbox 1">
-                                        Periodo de Gracia
-                                    </md-checkbox>
-                                </fieldset>
-                            </div> -->
                             <div class="col-sm-12 col-md-4">
-                                <md-radio-group ng-model="tipoPrestamo">
+                                <md-radio-group ng-model="tipoPrestamo" required name="tipoPrestamo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
                                             <md-radio-button type="radio" value="cuotaFija">Cuota fija</md-radio-button>
@@ -130,7 +115,7 @@
                                 </md-radio-group>
                             </div>
                             <div class="col-sm-12 col-md-4">
-                                <md-radio-group ng-model="tipoPrestamo">
+                                <md-radio-group ng-model="tipoPrestamo" required name="tipoPrestamo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
                                             <md-radio-button type="radio" value="periodoGracia">Período de gracia</md-radio-button>
@@ -146,50 +131,28 @@
                                     <md-input-container style="padding-top:10px">
                                         <input type="number" ng-model="anios" disabled placeholder="Años" ng-change="$complexSystem.reCalcularMeses();$complexSystem.validarAnios()" aria-label="red" aria-controls="red-slider">
                                     </md-input-container>
-                                    <md-slider aria-label="anios" ng-change="$complexSystem.reCalcularMeses()" md-discrete step="1" min="{{tipoPrestamo == 'cuotaFija' ? '3' : '5'}}" max="{{tipoPrestamo == 'cuotaFija' ? '7' : '10'}}" ng-model="anios"
-                                      class="md-warn">
+                                    <md-slider required name="sliderAnios" aria-label="anios" ng-change="$complexSystem.reCalcularMeses()" md-discrete step="1" min="{{tipoPrestamo == 'cuotaFija' ? '3' : '5'}}" max="{{tipoPrestamo == 'cuotaFija' ? '7' : '10'}}"
+                                      ng-model="anios" class="md-warn">
                                     </md-slider>
                                 </md-slider-container>
                             </div>
-                            <div class="col-4">
-                                <p>Plazo en Años/Meses</p>
-                            </div>
-                            <div class="col-4" style="pannding-right:20px" data-placement="left" title="Modalidad Vencida" onmouseenter="$(this).tooltip('show')">
+                            <div class="col-12">
+                                <div class="col-sm-12 col-md-12">
+                                    <center>
+                                        <p>Plazo en Años / Meses</p>
+                                    </center>
+                                </div>
                                 <center>
-                                    <input size="25px" type="texto" readonly ng-model="total" placeholder="Total Meses" class="form-control">
+                                    <input type="texto" style="text-align: center; width: 50%" readonly ng-model="total" placeholder="Total Meses" class="form-control">
                                 </center>
-                            </div>
-                            <div class="col-12" style="pannding-right:20px">
-                                {{tipoPrestamo == 'periodoGracia' ? 'Periodo de Gracia Muerto (3 años)' : '' }}
                             </div>
                         </div>
                         <hr>
                         Periodo de amortización
                         <hr>
                         <div class="row">
-                            <!-- <div class="col-4">
-                                <fieldset class="standard">
-                                    <md-checkbox type="checkbox" ng-model="selectTypeEnd.mensual" ng-disabled="selectTypeEnd.trimestral == true || selectTypeEnd.bimestral == true" aria-label="Checkbox 1">
-                                        Mensual
-                                    </md-checkbox>
-                                </fieldset>
-                            </div>
-                            <div class="col-4">
-                                <fieldset class="standard">
-                                    <md-checkbox type="checkbox" ng-model="selectTypeEnd.bimestral" ng-disabled="selectTypeEnd.trimestral == true || selectTypeEnd.mensual == true" aria-label="Checkbox 1" ng-if="tipoPrestamo == 'periodoGracia'" >
-                                        Bimestral
-                                    </md-checkbox>
-                                </fieldset>
-                            </div>
-                            <div class="col-4">
-                                <fieldset class="standard">
-                                    <md-checkbox type="checkbox" ng-model="selectTypeEnd.trimestral" ng-disabled="selectTypeEnd.mensual == true || selectTypeEnd.bimestral == true" aria-label="Checkbox 1">
-                                        Trimestral
-                                    </md-checkbox>
-                                </fieldset>
-                            </div> -->
                             <div class="col-sm-12 col-md-4">
-                                <md-radio-group ng-model="periodo">
+                                <md-radio-group ng-model="periodo" required name="periodo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
                                             <md-radio-button type="radio" value="30,12">Mensual</md-radio-button>
@@ -198,7 +161,7 @@
                                 </md-radio-group>
                             </div>
                             <div class="col-sm-12 col-md-4">
-                                <md-radio-group ng-model="periodo">
+                                <md-radio-group ng-model="periodo" required name="periodo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
                                             <md-radio-button type="radio" value="60,6" ng-if="tipoPrestamo == 'periodoGracia'">Bimestral</md-radio-button>
@@ -207,7 +170,7 @@
                                 </md-radio-group>
                             </div>
                             <div class="col-sm-12 col-md-4">
-                                <md-radio-group ng-model="periodo">
+                                <md-radio-group ng-model="periodo" required name="periodo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
                                             <md-radio-button type="radio" value="90,4">Trimestral</md-radio-button>
@@ -221,7 +184,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-12 col-md-4">
-                                <md-radio-group ng-model="factoresInteres">
+                                <md-radio-group ng-model="factoresInteres" ng-change="$gui.resetTasa()" required name="tasa">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
                                             <md-radio-button type="radio" value="efecAnual">Efectivo Anual</md-radio-button>
@@ -230,7 +193,7 @@
                                 </md-radio-group>
                             </div>
                             <div class="col-sm-12 col-md-4">
-                                <md-radio-group ng-model="factoresInteres">
+                                <md-radio-group ng-model="factoresInteres" ng-change="$gui.resetTasa()" required name="tasa">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
                                             <md-radio-button type="radio" value="nominAnual">Nominal Anual</md-radio-button>
@@ -239,7 +202,7 @@
                                 </md-radio-group>
                             </div>
                             <div class="col-sm-12 col-md-4">
-                                <md-radio-group ng-model="factoresInteres">
+                                <md-radio-group ng-model="factoresInteres" ng-change="$gui.resetTasa()" required name="tasa">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
                                             <md-radio-button type="radio" value="periodica">Periodica</md-radio-button>
@@ -248,13 +211,24 @@
                                 </md-radio-group>
                             </div>
                         </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="alert alert-warning alert-dismissible fade show" style="color: rgb(63,81,181);background-color: rgba(121, 134, 203, 0.44);border-color: rgb(63,81,181);" role="alert">
+                                    <strong>Nota!</strong> Recuerda elegir <u>Tipo, Periodo y Tasa</u> para realizar calculos.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-ms-4 col-md-4">
                                 <p style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Efectiva Anual:</p>
                             </div>
                             <div class="col-ms-12 col-md-5">
-                                <input style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}" type="number" class="form-control" placeholder="%" ng-change="$gui.efectivoAnualIngresado()" aria-label="Username" ng-model="efectivoAnual"
-                                  aria-describedby="basic-addon1" ng-show="factoresInteres == 'efecAnual'" ng-disabled="factoresInteres != 'efecAnual'">
+                                <input min="1" name="efectivaAnual" style="background-color: {{ myForm.efectivaAnual.$valid ? '#B2DFDB;' : 'rgba(255, 0, 94, 0.13);'}} font-size:{{includeMobileTemplate == true ? '14px;' : '18px;'}}" type="number"
+                                  class="form-control" placeholder="%" ng-change="$gui.efectivoAnualIngresado()" aria-label="Username" ng-model="efectivoAnual" aria-describedby="basic-addon1" ng-show="factoresInteres == 'efecAnual'" ng-disabled="myForm.tipoPrestamo.$valid == false || myForm.periodo.$valid == false || myForm.periodo.$valid == false">
                             </div>
                             <div class="col-ms-12 col-md-3">
                                 {{efectivoAnualHomologo | porcentaje }}
@@ -265,8 +239,8 @@
                                 <p style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Nominal Anual:</p>
                             </div>
                             <div class="col-ms-12 col-md-5">
-                                <input style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}" type="number" class="form-control" placeholder="%" aria-label="Username" ng-change="$gui.calculoNominalAnual()" ng-model="nominalAnual"
-                                  aria-describedby="basic-addon1" ng-show="factoresInteres == 'nominAnual'" ng-disabled="factoresInteres != 'nominAnual'">
+                                <input min="1" name="nominalAnual" style="background-color: {{ myForm.nominalAnual.$valid ? '#B2DFDB;' : 'rgba(255, 0, 94, 0.13);'}} font-size:{{includeMobileTemplate == true ? '14px;' : '18px;'}} " type="number"
+                                  class="form-control" placeholder="%" aria-label="Username" ng-change="$gui.calculoNominalAnual()" ng-model="nominalAnual" aria-describedby="basic-addon1" ng-show="factoresInteres == 'nominAnual'" ng-disabled="myForm.tipoPrestamo.$valid == false || myForm.periodo.$valid == false || myForm.periodo.$valid == false">
                             </div>
                             <div class="col-ms-12 col-md-3">
                                 {{nominalAnualHomologo | porcentaje }}
@@ -277,16 +251,22 @@
                                 <p style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Periodica:</p>
                             </div>
                             <div class="col-ms-12 col-md-5">
-                                <input style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}   " type="number" class="form-control" placeholder="%" ng-show="factoresInteres == 'periodica'" ng-model="periodica" ng-change="$gui.calculoPeriodico()" aria-label="Username" aria-describedby="basic-addon1"
-                                  ng-disabled="factoresInteres != 'periodica'">
+                                <input min="1" name="periodica" style="background-color: {{ myForm.periodica.$valid ? '#B2DFDB;' : 'rgba(255, 0, 94, 0.13);'}} font-size:{{includeMobileTemplate == true ? '14px;' : '18px;'}}" type="number" class="form-control"
+                                  placeholder="%" ng-show="factoresInteres == 'periodica'" ng-model="periodica" ng-change="$gui.calculoPeriodico()" aria-label="Username" aria-describedby="basic-addon1" ng-disabled="myForm.tipoPrestamo.$valid == false || myForm.periodo.$valid == false || myForm.periodo.$valid == false">
                             </div>
                             <div class="col-ms-12 col-md-3">
                                 {{periodicaHomologo | porcentaje }}
                             </div>
                         </div>
-                        <center>
-                            <md-button ng-disabled="true" class="md-raised md-primary">Calcular</md-button>
-                        </center>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <md-button ng-click="$gui.calcular()"
+                                  class="md-raised md-primary">Calcular</md-button>
+                                  <!-- agregar disabled -->
+                            </div>
+                        </div>
+                        <hr>
                     </form>
                 </div>
 
@@ -296,13 +276,13 @@
                         <div class="col-sm-8 bg-light text-center col-fixed" style="padding: 50px 20px 20px 20px; overflow:no;">
                             <div class="col-md-12 col-sm-12  text-center">
                                 <center>
-                                    <md-button ng-click="$complexSystem.downloadPDF()" class="md-raised md-primary">Descargar PDF</md-button>
+                                    <md-button ng-click="$complexSystem.downloadPDF()" ng-disabled="$complexSystem.RegExpNombre() == false || myForm.identificacion.$valid == false || myForm.prestamo.$valid == false || myForm.tipoPrestamo.$valid == false || myForm.sliderAnios.$valid == false || myForm.periodo.$valid == false || myForm.tasa.$valid == false || (periodicaHomologo == 0 || periodicaHomologo == null) || (nominalAnualHomologo == 0 || nominalAnualHomologo == null) || (efectivoAnualHomologo == 0 || efectivoAnualHomologo == null)"
+                                      class="md-raised md-primary">Descargar PDF</md-button>
                                 </center>
                                 <br>
                                 <h3>Cuadro de Amortización Cuota Fija</h3>
                             </div>
 
-                            <!--Why This Domain-->
                             <section class="pt-4" style="padding: 50px 20px 20px 20px; overflow:scroll;">
                                 <div class="container-fluid">
 
@@ -312,21 +292,15 @@
                                                 <div class="wrap-table100">
                                                     <div class="table100 ver1">
                                                         <div class="table100-firstcol">
-                                                            <table >
+                                                            <table>
                                                                 <thead>
                                                                     <tr>
                                                                         <th>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Cuota</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr class="row100 body">
-                                                                        <td class="cell100 column1">1</td>
-                                                                    </tr>
-                                                                    <tr class="row100 body">
-                                                                        <td class="cell100 column1">1</td>
-                                                                    </tr>
-                                                                    <tr class="row100 body">
-                                                                        <td class="cell100 column1">1</td>
+                                                                    <tr class="row100 body" ng-repeat="tab in tabla">
+                                                                        <td class="cell100 column1">{{tab.numeroCuotaHomologo}}</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -345,29 +319,13 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr class="row100 body">
-                                                                            <td class="cell100 column2">14 Nov 2018</td>
-                                                                            <td class="cell100 column3">14 Nov 2018</td>
-                                                                            <td class="cell100 column4">14 Nov 2018</td>
-                                                                            <td class="cell100 column5">00000000000</td>
-                                                                            <td class="cell100 column6">00000000000</td>
-                                                                            <td class="cell100 column7">00000000000</td>
-                                                                        </tr>
-                                                                        <tr class="row100 body">
-                                                                            <td class="cell100 column2">14 Nov 2018</td>
-                                                                            <td class="cell100 column3">14 Nov 2018</td>
-                                                                            <td class="cell100 column4">14 Nov 2018</td>
-                                                                            <td class="cell100 column5">00000000000</td>
-                                                                            <td class="cell100 column6">00000000000</td>
-                                                                            <td class="cell100 column7">00000000000</td>
-                                                                        </tr>
-                                                                        <tr class="row100 body">
-                                                                            <td class="cell100 column2">14 Nov 2018</td>
-                                                                            <td class="cell100 column3">14 Nov 2018</td>
-                                                                            <td class="cell100 column4">14 Nov 2018</td>
-                                                                            <td class="cell100 column5">00000000000</td>
-                                                                            <td class="cell100 column6">00000000000</td>
-                                                                            <td class="cell100 column7">00000000000</td>
+                                                                        <tr class="row100 body" ng-repeat="tab in tabla">
+                                                                            <td class="cell100 column2">{{tab.fechaHomologo}}</td>
+                                                                            <td class="cell100 column3">{{tab.saldoCapitalHomologo}}</td>
+                                                                            <td class="cell100 column4">{{tab.amortizacionCapitalHomologo}}</td>
+                                                                            <td class="cell100 column5">{{tab.amortizacionInteresHomologo}}</td>
+                                                                            <td class="cell100 column6">{{tab.cuotaFijaHomologo}}</td>
+                                                                            <td class="cell100 column7">{{tab.flujoCajaHomologo}}</td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -392,6 +350,7 @@
                 <section>
 
 
+                    <script src="../../../../../node_modules/angular-sanitize/angular-sanitize.min.js"></script>
                     <script src="../../../../../node_modules/angular-animate/angular-animate.min.js"></script>
                     <script src="../../../../../node_modules/angular-aria/angular-aria.min.js"></script>
                     <script src="../../../../../node_modules/angular-messages/angular-messages.min.js"></script>
