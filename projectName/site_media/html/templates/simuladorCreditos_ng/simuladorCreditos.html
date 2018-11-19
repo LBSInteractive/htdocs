@@ -107,20 +107,16 @@
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <md-radio-group ng-model="tipoPrestamo" required name="tipoPrestamo">
-                                    <div class="col-sm-12 col-md-12">
-                                        <fieldset class="standard">
-                                            <md-radio-button type="radio" value="cuotaFija">Cuota Fija</md-radio-button>
-                                        </fieldset>
-                                    </div>
+                                    <fieldset class="standard">
+                                        <md-radio-button type="radio" value="cuotaFija">Cuota Fija</md-radio-button>
+                                    </fieldset>
                                 </md-radio-group>
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <md-radio-group ng-model="tipoPrestamo" required name="tipoPrestamo">
-                                    <div class="col-sm-12 col-md-12">
-                                        <fieldset class="standard">
-                                            <md-radio-button type="radio" value="periodoGracia">Período de Gracia</md-radio-button>
-                                        </fieldset>
-                                    </div>
+                                    <fieldset class="standard">
+                                        <md-radio-button type="radio" value="periodoGracia">Período de Gracia</md-radio-button>
+                                    </fieldset>
                                 </md-radio-group>
                             </div>
                         </div>
@@ -129,7 +125,9 @@
                             <div class="col-11">
                                 <md-slider-container>
                                     <md-input-container style="padding-top:10px">
-                                        <input type="number" ng-model="anios" disabled placeholder="Años" ng-change="$complexSystem.reCalcularMeses();$complexSystem.validarAnios()" aria-label="red" aria-controls="red-slider">
+                                        <input style="color:{{ myForm.sliderAnios.$valid ? '#438e4d;' : 'rgb(198, 40, 40);' }}" type="number" ng-model="anios" readonly placeholder="Años" ng-change="$complexSystem.reCalcularMeses();$complexSystem.validarAnios()"
+                                          aria-label="red" aria-controls="red-slider">
+                                        <md-tooltip md-direction="bot" md-visible="true">Recuerda deslizarme</md-tooltip>
                                     </md-input-container>
                                     <md-slider required name="sliderAnios" aria-label="anios" ng-change="$complexSystem.reCalcularMeses()" md-discrete step="1" min="{{tipoPrestamo == 'cuotaFija' ? '3' : '5'}}" max="{{tipoPrestamo == 'cuotaFija' ? '7' : '10'}}"
                                       ng-model="anios" class="md-warn">
@@ -152,7 +150,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-12 col-md-4">
-                                <md-radio-group ng-model="periodo" required name="periodo">
+                                <md-radio-group ng-model="periodo" ng-change="$gui.resetTasa();$gui.resetTasaOption()" required name="periodo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
                                             <md-radio-button type="radio" value="30,12">Mensual</md-radio-button>
@@ -161,7 +159,7 @@
                                 </md-radio-group>
                             </div>
                             <div class="col-sm-12 col-md-4">
-                                <md-radio-group ng-model="periodo" required name="periodo">
+                                <md-radio-group ng-model="periodo" ng-change="$gui.resetTasa();$gui.resetTasaOption()" required name="periodo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
                                             <md-radio-button type="radio" value="60,6" ng-if="tipoPrestamo == 'periodoGracia'">Bimestral</md-radio-button>
@@ -170,7 +168,7 @@
                                 </md-radio-group>
                             </div>
                             <div class="col-sm-12 col-md-4">
-                                <md-radio-group ng-model="periodo" required name="periodo">
+                                <md-radio-group ng-model="periodo" ng-change="$gui.resetTasa();$gui.resetTasaOption()" required name="periodo">
                                     <div class="col-sm-12 col-md-12">
                                         <fieldset class="standard">
                                             <md-radio-button type="radio" value="90,4">Trimestral</md-radio-button>
@@ -227,8 +225,9 @@
                                 <p style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Efectiva Anual:</p>
                             </div>
                             <div class="col-ms-12 col-md-5">
-                                <input min="1" name="efectivaAnual" style="background-color: {{ myForm.efectivaAnual.$valid ? '#B2DFDB;' : 'rgba(255, 0, 94, 0.13);'}} font-size:{{includeMobileTemplate == true ? '14px;' : '18px;'}}" type="number"
-                                  class="form-control" placeholder="%" ng-change="$gui.efectivoAnualIngresado()" aria-label="Username" ng-model="efectivoAnual" aria-describedby="basic-addon1" ng-show="factoresInteres == 'efecAnual'" ng-disabled="myForm.tipoPrestamo.$valid == false || myForm.periodo.$valid == false || myForm.periodo.$valid == false">
+                                <input min="0" name="efectivaAnual" style="background-color: {{ myForm.efectivaAnual.$valid ? '#B2DFDB;' : 'rgba(255, 0, 94, 0.13);'}} font-size:{{includeMobileTemplate == true ? '14px;' : '18px;'}}" type="number"
+                                  class="form-control" placeholder="%" ng-change="$gui.efectivoAnualIngresado()" aria-label="Username" ng-model="efectivoAnual" aria-describedby="basic-addon1" ng-show="factoresInteres == 'efecAnual'" ng-disabled="myForm.tipoPrestamo.$valid == false || myForm.periodo.$valid == false || myForm.periodo.$valid == false"
+                                  required>
                             </div>
                             <div class="col-ms-12 col-md-3">
                                 {{efectivoAnualHomologo | porcentaje }}
@@ -239,7 +238,7 @@
                                 <p style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Nominal Anual:</p>
                             </div>
                             <div class="col-ms-12 col-md-5">
-                                <input min="1" name="nominalAnual" style="background-color: {{ myForm.nominalAnual.$valid ? '#B2DFDB;' : 'rgba(255, 0, 94, 0.13);'}} font-size:{{includeMobileTemplate == true ? '14px;' : '18px;'}} " type="number"
+                                <input min="0" name="nominalAnual" style="background-color: {{ myForm.nominalAnual.$valid ? '#B2DFDB;' : 'rgba(255, 0, 94, 0.13);'}} font-size:{{includeMobileTemplate == true ? '14px;' : '18px;'}} " type="number"
                                   class="form-control" placeholder="%" aria-label="Username" ng-change="$gui.calculoNominalAnual()" ng-model="nominalAnual" aria-describedby="basic-addon1" ng-show="factoresInteres == 'nominAnual'" ng-disabled="myForm.tipoPrestamo.$valid == false || myForm.periodo.$valid == false || myForm.periodo.$valid == false">
                             </div>
                             <div class="col-ms-12 col-md-3">
@@ -251,7 +250,7 @@
                                 <p style="{{includeMobileTemplate == true ? 'font-size:14px' : 'font-size:18px'}}">Periodica:</p>
                             </div>
                             <div class="col-ms-12 col-md-5">
-                                <input min="1" name="periodica" style="background-color: {{ myForm.periodica.$valid ? '#B2DFDB;' : 'rgba(255, 0, 94, 0.13);'}} font-size:{{includeMobileTemplate == true ? '14px;' : '18px;'}}" type="number" class="form-control"
+                                <input min="0" name="periodica" style="background-color: {{ myForm.periodica.$valid ? '#B2DFDB;' : 'rgba(255, 0, 94, 0.13);'}} font-size:{{includeMobileTemplate == true ? '14px;' : '18px;'}}" type="number" class="form-control"
                                   placeholder="%" ng-show="factoresInteres == 'periodica'" ng-model="periodica" ng-change="$gui.calculoPeriodico()" aria-label="Username" aria-describedby="basic-addon1" ng-disabled="myForm.tipoPrestamo.$valid == false || myForm.periodo.$valid == false || myForm.periodo.$valid == false">
                             </div>
                             <div class="col-ms-12 col-md-3">
@@ -261,9 +260,9 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                                <md-button ng-disabled="$complexSystem.RegExpNombre() == false || myForm.identificacion.$valid == false || myForm.prestamo.$valid == false || myForm.tipoPrestamo.$valid == false || myForm.sliderAnios.$valid == false || myForm.periodo.$valid == false || myForm.tasa.$valid == false || (periodicaHomologo == 0 || periodicaHomologo == null) || (nominalAnualHomologo == 0 || nominalAnualHomologo == null) || (efectivoAnualHomologo == 0 || efectivoAnualHomologo == null)" ng-click="$gui.calcular()"
-                                  class="md-raised md-primary">Calcular</md-button>
-                                  <!-- agregar disabled -->
+                                <md-button ng-disabled="$complexSystem.RegExpNombre() == false || myForm.identificacion.$valid == false || myForm.prestamo.$valid == false || myForm.tipoPrestamo.$valid == false || myForm.sliderAnios.$valid == false || myForm.periodo.$valid == false || myForm.tasa.$valid == false || (periodicaHomologo == 0 || periodicaHomologo == null) || (nominalAnualHomologo == 0 || nominalAnualHomologo == null) || (efectivoAnualHomologo == 0 || efectivoAnualHomologo == null)"
+                                  ng-click="$gui.calcular()" class="md-raised md-primary">Calcular</md-button>
+                                <!-- agregar disabled -->
                             </div>
                         </div>
                         <hr>
@@ -274,15 +273,14 @@
                 <div class="col-sm-7 offset-sm-5 px-0">
                     <div class="row">
                         <div class="col-sm-8 bg-light text-center col-fixed" style="padding: 50px 20px 20px 20px; overflow-y:scroll;">
-                            <div class="col-md-12 col-sm-12  text-center">
-                                <center>
-                                    <md-button ng-click="$complexSystem.downloadPDF()" ng-disabled="$complexSystem.RegExpNombre() == false || myForm.identificacion.$valid == false || myForm.prestamo.$valid == false || myForm.tipoPrestamo.$valid == false || myForm.sliderAnios.$valid == false || myForm.periodo.$valid == false || myForm.tasa.$valid == false || (periodicaHomologo == 0 || periodicaHomologo == null) || (nominalAnualHomologo == 0 || nominalAnualHomologo == null) || (efectivoAnualHomologo == 0 || efectivoAnualHomologo == null)"
-                                      class="md-raised md-primary">Descargar PDF</md-button>
-                                </center>
+                            <div class="col-md-12 col-sm-6">
                                 <br>
                                 <h3>Cuadro de Amortización Cuota Fija</h3>
                             </div>
-
+                            <div class="col-md-12 col-sm-6 ">
+                                <md-button ng-click="$complexSystem.downloadPDF()" ng-disabled="$complexSystem.RegExpNombre() == false || myForm.identificacion.$valid == false || myForm.prestamo.$valid == false || myForm.tipoPrestamo.$valid == false || myForm.sliderAnios.$valid == false || myForm.periodo.$valid == false || myForm.tasa.$valid == false || (periodicaHomologo == 0 || periodicaHomologo == null) || (nominalAnualHomologo == 0 || nominalAnualHomologo == null) || (efectivoAnualHomologo == 0 || efectivoAnualHomologo == null)"
+                                  class="md-raised md-primary">Descargar PDF</md-button>
+                            </div>
                             <section class="pt-4" style="padding: 50px 20px 20px 20px; overflow:scroll;">
                                 <div class="container-fluid">
 
