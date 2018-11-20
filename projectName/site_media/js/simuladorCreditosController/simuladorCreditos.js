@@ -48,9 +48,6 @@ app.controller('simuladorCreditos_Controller', [
         /*--------------------------            $gui            ------------------------------*/
         //*************************(  Ejecuciones de la pantalla )******************************
         $scope.$gui = {
-            ejemplo: function() {
-                $scope.variable = "Nuevo Valor pantalla";
-            },
             efectivoAnualIngresado: function() {
 
                 if (Number($scope.efectivoAnual) > 9999999999999) {
@@ -103,6 +100,7 @@ app.controller('simuladorCreditos_Controller', [
                 var cuotaIndex = 0;
                 var fechaHoy = new Date();
                 var cuotaFija = 0;
+                var interesPeriodicoTransform = $scope.factoresInteres == "periodica" ? (Number($scope.periodica) / 100) : Number($scope.periodica);
 
                 if ($scope.tipoPrestamo == "periodoGracia") {
                     $scope.tabla = [];
@@ -122,15 +120,15 @@ app.controller('simuladorCreditos_Controller', [
                         amortizacionInteresHomologo: '$0.00',
                         cuotaFija: '$0.00',
                         cuotaFijaHomologo: '$0.00',
-                        flujoCaja: Number($scope.prestamo),
-                        flujoCajaHomologo: $filter('currency')($scope.prestamo)
+                        flujoCaja: '$0.00',
+                        flujoCajaHomologo: '$0.00'
                     });
                     cuotaIndex++;
                     fechaHoy = new Date(fechaHoy.setMonth(fechaHoy.getMonth() + saltosAnios));
                     saldoCapital = Number($scope.prestamo);
                     for (var i = 0; i < aniosSobrantes; i++) {
-                        amortizacionInteres = $scope.$gui.formulaInteres(saldoCapital, $scope.periodica);
-                        saldoCapital = saldoCapital + $scope.$gui.formulaInteres(saldoCapital, $scope.periodica);
+                        amortizacionInteres = $scope.$gui.formulaInteres(saldoCapital, interesPeriodicoTransform);
+                        saldoCapital = saldoCapital + $scope.$gui.formulaInteres(saldoCapital, interesPeriodicoTransform);
                         $scope.tabla.push({
                             numeroCuota: cuotaIndex,
                             numeroCuotaHomologo: "(" + cuotaIndex + ") Período de Gracia",
@@ -144,17 +142,17 @@ app.controller('simuladorCreditos_Controller', [
                             amortizacionInteresHomologo: $filter('currency')(amortizacionInteres),
                             cuotaFija: '$0.00',
                             cuotaFijaHomologo: '$0.00',
-                            flujoCaja: "+ " + amortizacionInteres,
-                            flujoCajaHomologo: "+ " + $filter('currency')(amortizacionInteres)
+                            flujoCaja: '$0.00',
+                            flujoCajaHomologo: '$0.00'
                         });
                         cuotaIndex++;
                         fechaHoy = new Date(fechaHoy.setMonth(fechaHoy.getMonth() + saltosAnios));
                     }
+                    cuotaFija = $scope.$gui.formularAnualidad(saldoCapital, interesPeriodicoTransform, numeroCuotas)
                     for (var i = 0; i < numeroCuotas; i++) {
-                        cuotaFija = $scope.$gui.formularAnualidad(saldoCapital, $scope.periodica, numeroCuotas)
-                        amortizacionInteres = $scope.$gui.formulaInteres(saldoCapital, $scope.periodica);
+                        amortizacionInteres = $scope.$gui.formulaInteres(saldoCapital, interesPeriodicoTransform    );
                         amortizacionCapital = Number(cuotaFija) - Number(amortizacionInteres);
-                        saldoCapital = saldoCapital - cuotaFija;
+                        saldoCapital = saldoCapital - amortizacionCapital;
                         $scope.tabla.push({
                             numeroCuota: cuotaIndex,
                             numeroCuotaHomologo: cuotaIndex,
@@ -192,16 +190,16 @@ app.controller('simuladorCreditos_Controller', [
                         amortizacionInteresHomologo: '$0.00',
                         cuotaFija: '$0.00',
                         cuotaFijaHomologo: '$0.00',
-                        flujoCaja: Number($scope.prestamo),
-                        flujoCajaHomologo: $filter('currency')($scope.prestamo)
+                        flujoCaja: '$0.00',
+                        flujoCajaHomologo: '$0.00'
                     });
                     cuotaIndex++;
                     fechaHoy = new Date(fechaHoy.setMonth(fechaHoy.getMonth() + saltosAnios));
+                    cuotaFija = $scope.$gui.formularAnualidad(saldoCapital, interesPeriodicoTransform, numeroCuotas)
                     for (var i = 0; i < numeroCuotas; i++) {
-                        cuotaFija = $scope.$gui.formularAnualidad(saldoCapital, $scope.periodica, numeroCuotas)
-                        amortizacionInteres = $scope.$gui.formulaInteres(saldoCapital, $scope.periodica);
+                        amortizacionInteres = $scope.$gui.formulaInteres(saldoCapital, interesPeriodicoTransform);
                         amortizacionCapital = Number(cuotaFija) - Number(amortizacionInteres);
-                        saldoCapital = saldoCapital - cuotaFija;
+                        saldoCapital = saldoCapital - amortizacionCapital;
                         $scope.tabla.push({
                             numeroCuota: cuotaIndex,
                             numeroCuotaHomologo: cuotaIndex,
@@ -311,7 +309,7 @@ app.controller('simuladorCreditos_Controller', [
                             text: '',
                             style: 'header'
                         },
-                        'En el siguiente documento se entrega al cliente ' + $scope.nombre + ' con el objetivo de mantener la información negociada el mes ' + (new Date().getMonth() + 1) + ' del año ' + new Date().getFullYear(), {
+                        'En el siguiente documento se entrega al cliente ' + $scope.nombre + ' con el objetivo de mantener la información negociada el día ' + new Date().getDate() + ' del mes '  + (new Date().getMonth() + 1) + ' del año ' + new Date().getFullYear(), {
                             text: 'Nombre:',
                             style: 'subheader'
                         },
