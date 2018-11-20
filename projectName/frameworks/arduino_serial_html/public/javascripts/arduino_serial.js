@@ -32,15 +32,17 @@ app.controller('arduinoSerialCtrl', ['$scope', '$http', function($scope, $http) 
   $scope.ports = [];
   $scope.lines = [];
   $scope.dataPersona = {
-    nombre: 'jefer'
+    nombre: 'Jefer Ramos Lerma',
+    identificacion: '1245962356',
+    valorPrestamo: '1000000'
   };
-  // location.href= "http://localhost/projectName/site_media/html/modules/simuladorCreditosMC/simuladorCreditosController.php#!?nombre=" + $scope.dataPersona.nombre;
+
   var socket = io();
 
   socket.on('serial_data', function(data) {
     $scope.data = data;
     if (data) {
-      console.log("Direccionar");
+      location.href= "http://localhost/projectName/site_media/html/modules/simuladorCreditosMC/simuladorCreditosController.php#!?nombre=" + $scope.dataPersona.nombre + '&&identificacion=' + $scope.dataPersona.identificacion;
     } else {
       console.log("No direccionar");
     }

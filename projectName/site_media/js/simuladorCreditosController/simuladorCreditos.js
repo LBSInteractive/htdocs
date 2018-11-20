@@ -443,7 +443,10 @@ app.controller('simuladorCreditos_Controller', [
         }
         $scope.myHTML = $scope.includeMobileTemplate ? '<h3>Tipo Préstamo </h3><br>' : '<p>Tipo Préstamo:</p>';
         var esto = $location.search();
-        console.log(esto);
+        if (esto) {
+            $scope.nombre = esto.nombre;
+            $scope.id = esto.identificacion;
+        }
         $scope.tabla.push({
             numeroCuota: 0,
             numeroCuotaHomologo: '0',
