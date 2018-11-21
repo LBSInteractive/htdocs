@@ -33,8 +33,12 @@ app.controller('arduinoSerialCtrl', ['$scope', '$http', function($scope, $http) 
   $scope.lines = [];
   $scope.dataPersona = {
     nombre: 'Jefer Ramos Lerma',
-    identificacion: '1245962356',
-    valorPrestamo: '1000000'
+    identificacion: '1425128963',
+    valorPrestamo: '1000000',
+    tipoPrestamo: 'cuotaFija',
+    anios: '3',
+    periodo: '30,12',
+    factoresInteres: 'periodica'
   };
 
   var socket = io();
@@ -42,7 +46,7 @@ app.controller('arduinoSerialCtrl', ['$scope', '$http', function($scope, $http) 
   socket.on('serial_data', function(data) {
     $scope.data = data;
     if (data) {
-      location.href= "http://localhost/projectName/site_media/html/modules/simuladorCreditosMC/simuladorCreditosController.php#!?nombre=" + $scope.dataPersona.nombre + '&&identificacion=' + $scope.dataPersona.identificacion;
+      location.href= "http://localhost/projectName/site_media/html/modules/simuladorCreditosMC/simuladorCreditosController.php#!?nombre=" + $scope.dataPersona.nombre + '&&identificacion=' + $scope.dataPersona.identificacion + '&&valorPrestamo=' + $scope.dataPersona.valorPrestamo + '&&tipoPrestamo=' + $scope.dataPersona.tipoPrestamo + '&&anios=' + $scope.dataPersona.anios + '&&periodo=' + $scope.dataPersona.periodo + '&&factoresInteres=' + $scope.dataPersona.factoresInteres;
     } else {
       console.log("No direccionar");
     }

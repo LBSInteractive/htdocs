@@ -33,6 +33,8 @@ app.controller('simuladorCreditos_Controller', [
         $scope.periodica;
         $scope.tabla = [];
         $scope.rows = [];
+        $scope.$parent.identificacion = 0;
+
 
 
         /*--------------------------            $apis           ------------------------------*/
@@ -150,7 +152,7 @@ app.controller('simuladorCreditos_Controller', [
                     }
                     cuotaFija = $scope.$gui.formularAnualidad(saldoCapital, interesPeriodicoTransform, numeroCuotas)
                     for (var i = 0; i < numeroCuotas; i++) {
-                        amortizacionInteres = $scope.$gui.formulaInteres(saldoCapital, interesPeriodicoTransform    );
+                        amortizacionInteres = $scope.$gui.formulaInteres(saldoCapital, interesPeriodicoTransform);
                         amortizacionCapital = Number(cuotaFija) - Number(amortizacionInteres);
                         saldoCapital = saldoCapital - amortizacionCapital;
                         $scope.tabla.push({
@@ -309,7 +311,7 @@ app.controller('simuladorCreditos_Controller', [
                             text: '',
                             style: 'header'
                         },
-                        'En el siguiente documento se entrega al cliente ' + $scope.nombre + ' con el objetivo de mantener la información negociada el día ' + new Date().getDate() + ' del mes '  + (new Date().getMonth() + 1) + ' del año ' + new Date().getFullYear(), {
+                        'En el siguiente documento se entrega al cliente ' + $scope.nombre + ' con el objetivo de mantener la información negociada el día ' + new Date().getDate() + ' del mes ' + (new Date().getMonth() + 1) + ' del año ' + new Date().getFullYear(), {
                             text: 'Nombre:',
                             style: 'subheader'
                         },
@@ -317,7 +319,7 @@ app.controller('simuladorCreditos_Controller', [
                             text: 'ID:',
                             style: 'subheader'
                         },
-                        $filter('number')($scope.identificacion), {
+                        $filter('number')($scope.$parent.identificacion ? $scope.$parent.identificacion : 'X.XXX.XXX.XXX'), {
                             text: 'Valor Prestamo:',
                             style: 'subheader'
                         },
@@ -445,7 +447,10 @@ app.controller('simuladorCreditos_Controller', [
         var esto = $location.search();
         if (esto) {
             $scope.nombre = esto.nombre;
-            $scope.id = esto.identificacion;
+            $scope.prestamo = Number(esto.valorPrestamo);
+            $scope.tipoPrestamo = esto.tipoPrestamo;
+            $scope.periodo = esto.periodo;
+            $scope.$parent.identificacion = Number(esto.identificacion);
         }
         $scope.tabla.push({
             numeroCuota: 0,
@@ -463,6 +468,7 @@ app.controller('simuladorCreditos_Controller', [
             flujoCaja: 0,
             flujoCajaHomologo: '$0.00'
         });
+
     }
 ])
 /*---------------------------------------------Area Modulo Controller-----------------------------------------------*/

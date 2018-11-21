@@ -70,7 +70,7 @@
                                 <p>Nombre:</p>
                             </div>
                             <div class="col-8">
-                                <input size="25px" data-placement="top" title="Ingresar Nombre y Apellidos" onmouseenter="$(this).tooltip('show')" type="text" ng-model="nombre" style="background-color: {{ $complexSystem.RegExpNombre() ? '#B2DFDB' : 'rgba(255, 0, 94, 0.13)' }}"
+                                <input size="25px" data-placement="top" title="Ingresar Nombre y Apellidos" onmouseenter="$(this).tooltip('show')" type="text" ng-model="nombre" style="background-color: {{ $complexSystem.RegExpNombre() ? '#B2DFDB' : 'rgba(255, 0, 94, 0.08)' }}"
                                   class="form-control" placeholder="Nombre">
                             </div>
 
@@ -81,11 +81,11 @@
                                 <p>Identificación:</p>
                             </div>
                             <div class="col-4">
-                                <input class="form-control" size="25px" type="number" style="background-color: {{ myForm.identificacion.$valid ? '#B2DFDB' : 'rgba(255, 0, 94, 0.13)' }}" placeholder="Indentificación" data-placement="top" title="Minimo 10 dígitos"
-                                  onmouseenter="$(this).tooltip('show')" name="identificacion" min="1000000000" max="999999999999999" ng-model="identificacion" ng-init="identificacion = 0000000000 " required>
+                                <input class="form-control" size="25px" type="number" style="background-color: {{ myForm.identificacion.$valid ? '#B2DFDB' : 'rgba(255, 0, 94, 0.08)' }}" placeholder="Indentificación" data-placement="top" title="Minimo 10 dígitos"
+                                  onmouseenter="$(this).tooltip('show')" name="identificacion" min="1000000000" max="999999999999999" ng-model="$parent.identificacion" required>
                             </div>
                             <div class="col-5">
-                                <p>{{ identificacion ? (identificacion | number) :'0.000.000.000' }}</p>
+                                <p>{{ $parent.identificacion ? ($parent.identificacion | number) :'0.000.000.000' }}</p>
                             </div>
                         </div>
                         <br>
@@ -95,7 +95,7 @@
                             </div>
                             <div class="col-4">
                                 <input size="25px" data-placement="top" title="Minimo $500.000" onmouseenter="$(this).tooltip('show')" type="number" class="form-control" name="prestamo" ng-model="prestamo" max="999999999999" min="500000" placeholder="$"
-                                  aria-label="prestamo" style="background-color: {{ myForm.prestamo.$valid ? '#B2DFDB' : 'rgba(255, 0, 94, 0.13)'}}" aria-describedby="basic-addon1" step="0.01" required>
+                                  aria-label="prestamo" style="background-color: {{ myForm.prestamo.$valid ? '#B2DFDB' : 'rgba(255, 0, 94, 0.08)'}}" aria-describedby="basic-addon1" step="0.01" required>
                             </div>
                             <div class="col-5">
                                 <p>{{ prestamo ? 'COL' + (prestamo | currency) : '$0' }}</p>
@@ -127,7 +127,7 @@
                                     <md-input-container style="padding-top:10px">
                                         <input style="color:{{ myForm.sliderAnios.$valid ? '#438e4d;' : 'rgb(198, 40, 40);' }}" type="number" ng-model="anios" readonly placeholder="Años" ng-change="$complexSystem.reCalcularMeses();$complexSystem.validarAnios()"
                                           aria-label="red" aria-controls="red-slider">
-                                        <md-tooltip md-direction="bot" md-visible="true">Recuerda deslizarme</md-tooltip>
+                                        <md-tooltip md-direction="bot">Recuerda deslizarme</md-tooltip>
                                     </md-input-container>
                                     <md-slider required name="sliderAnios" aria-label="anios" ng-change="$complexSystem.reCalcularMeses()" md-discrete step="1" min="{{tipoPrestamo == 'cuotaFija' ? '3' : '5'}}" max="{{tipoPrestamo == 'cuotaFija' ? '7' : '10'}}"
                                       ng-model="anios" class="md-warn">
@@ -141,7 +141,7 @@
                                     </center>
                                 </div>
                                 <center>
-                                    <input type="texto" style="text-align: center; width: 50%" readonly ng-model="total" placeholder="Total Meses" class="form-control">
+                                    <input type="texto" style="text-align: center; width: 50%; background-color: {{ myForm.sliderAnios.$valid ? '#B2DFDB' : 'rgba(255, 0, 94, 0.08)'}}" readonly ng-model="total" placeholder="Total Meses" class="form-control">
                                 </center>
                             </div>
                         </div>
