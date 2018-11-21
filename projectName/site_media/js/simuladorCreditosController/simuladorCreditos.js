@@ -33,7 +33,7 @@ app.controller('simuladorCreditos_Controller', [
         $scope.periodica;
         $scope.tabla = [];
         $scope.rows = [];
-        $scope.$parent.identificacion = 0;
+
 
 
 
@@ -316,7 +316,7 @@ app.controller('simuladorCreditos_Controller', [
                             style: 'subheader'
                         },
                         $scope.nombre, {
-                            text: 'ID:',
+                            text: 'Número de Indentificación:',
                             style: 'subheader'
                         },
                         $filter('number')($scope.$parent.identificacion ? $scope.$parent.identificacion : 'X.XXX.XXX.XXX'), {
@@ -447,10 +447,10 @@ app.controller('simuladorCreditos_Controller', [
         var esto = $location.search();
         if (esto) {
             $scope.nombre = esto.nombre;
-            $scope.prestamo = Number(esto.valorPrestamo);
+            //$scope.prestamo = Number(esto.valorPrestamo);
             $scope.tipoPrestamo = esto.tipoPrestamo;
             $scope.periodo = esto.periodo;
-            $scope.$parent.identificacion = Number(esto.identificacion);
+            //$scope.$parent.identificacion = $scope.$parent.identificacion ? Number(esto.identificacion) : 0;
         }
         $scope.tabla.push({
             numeroCuota: 0,

@@ -81,8 +81,8 @@
                                 <p>Identificación:</p>
                             </div>
                             <div class="col-4">
-                                <input class="form-control" size="25px" type="number" style="background-color: {{ myForm.identificacion.$valid ? '#B2DFDB' : 'rgba(255, 0, 94, 0.08)' }}" placeholder="Indentificación" data-placement="top" title="Minimo 10 dígitos"
-                                  onmouseenter="$(this).tooltip('show')" name="identificacion" min="1000000000" max="999999999999999" ng-model="$parent.identificacion" required>
+                                <input class="form-control" size="25px" type="number" style="background-color: {{ myForm.identificacion.$valid ? '#B2DFDB' : 'rgba(255, 0, 94, 0.08)' }}" placeholder="Indentificación" data-placement="top" title="Minimo 7 dígitos"
+                                  onmouseenter="$(this).tooltip('show')" name="identificacion" min="99" max="999999999999999" ng-model="$parent.identificacion" required>
                             </div>
                             <div class="col-5">
                                 <p>{{ $parent.identificacion ? ($parent.identificacion | number) :'0.000.000.000' }}</p>
