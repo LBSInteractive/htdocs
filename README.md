@@ -113,48 +113,48 @@ La wea que esta leyendo
                 Tecnologías y Licencias
 ********************************************************
 
-/ PHP 7.1
+/ PHP 7.1 \
 PHP License, version 3.01
 This product includes PHP software, freely available from
 <http://www.php.net/software/>
 
 
-/ Apache 2.4
+/ Apache 2.4 \
 Apache License
 Version 2.0, January 2004
 
 
-/ HTML5
+/ HTML5 \
 Estandar abierto (W3C)
 https://www.w3.org/
 
 
-/ MariaDB
+/ MariaDB \
 MariaDB GLP License
 
 
-/ JavaScript
+/ JavaScript \
 Estandar ECMA-262 3
 http://www.ecma-international.org/
 
 
-/ MySQL 5.4
+/ MySQL 5.4 \
 MySQL GLP License - Develop
 
 
-/ Bootstrap 4
+/ Bootstrap 4 \
 MIT license
 
 
-/ AngularJS
+/ AngularJS \
 MIT license
 
 
-/ wired ui kit v4.0
+/ wired ui kit v4.0 \
 MIT license
 
 
-/ StartBootstrap Dashboard
+/ StartBootstrap Dashboard \
 MIT license
 
 
