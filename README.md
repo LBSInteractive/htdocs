@@ -31,8 +31,8 @@ lo que te permite iniciar un estructura MVC y un árbol
 al puro estilo multimedia (claramente web), permitiendote
 el control total de tu App, no te limita y en cambio te
 permite desarrollar a tus propios deseos y a tus propios
-limites, zero te construye la base, el desarrollo lo tu
-lo decides.
+limites, zero te construye la base, el desarrollo tu lo
+decides.
 ********************************************************
 
 
@@ -109,9 +109,9 @@ La wea que esta leyendo
 
 
 
-/*******************************************************
+*******************************************************
                 Tecnologías y Licencias
-********************************************************/
+********************************************************
 
 / PHP 7.1
 PHP License, version 3.01
